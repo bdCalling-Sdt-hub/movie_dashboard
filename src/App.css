@@ -85,3 +85,32 @@
     color: white;
     font-size: 48px;
 }
+
+
+
+
+.custom-jodit-editor .jodit-react-container .jodit-container .jodit-toolbar__box .jodit-toolbar-editor-collection {
+    align-items: flex-end;
+    background-color: #141A26;
+  }
+  
+  .jodit-footer {
+    display: none !important;
+  }
+  .custom-jodit-editor .jodit-status-bar{
+    display: none;
+  }
+  .custom-jodit-editor .jodit-toolbar__box:not(:empty) {
+    border-bottom: 0px;
+  }
+  
+  .custom-jodit-editor .jodit-container:not(.jodit_inline){
+    background-color: #F6F6F6;
+    border: none;
+  }
+  .custom-jodit-editor .jodit-wysiwyg{
+    background-color: #141A26;
+  }
+  .jodit-toolbar-editor-collection_mode_horizontal {
+    position: none;
+  }

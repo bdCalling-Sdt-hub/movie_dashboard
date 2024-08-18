@@ -88,7 +88,7 @@ export const Sidebar = () => {
                 }}> 
                 </div>: ""}
                 <div onClick={() => toggleAccordion(index)}
-                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white bg-[#4E008C] py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px] mb-5`}
+                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white ${isSubMenuActive ? "bg-[#4E008C] "  : "bg-[#141A26]"} py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px] mb-5`}
                 >
                   {item?.icon}
                   {item?.label}
@@ -105,13 +105,13 @@ export const Sidebar = () => {
                 >
                   {
                     item?.sub_menu?.map((sub_item, subIndex) => {
-                      // const isSubItemActive = sub_item.path === pathname;
+                      const isSubItemActive = sub_item.path === pathname;
 
                       return (
                         <NavLink
                           to={sub_item?.path}
                           key={subIndex}
-                          className={`flex justify-start items-center  px-10  w-full py-2 cursor-pointer bg-[#141A26] text-white  `}
+                          className={`flex justify-start items-center  ${isSubItemActive ? "bg-[#4E008C]  " : ""}  px-10  w-full py-2 cursor-pointer bg-[#141A26] text-white hover:text-white `}
                         >
                           {sub_item?.icon}
                           {sub_item?.label}
