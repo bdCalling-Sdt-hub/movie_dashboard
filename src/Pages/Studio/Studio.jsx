@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IoMdAdd } from 'react-icons/io'
 import StudioPageTable from '../../Components/StudioPageTable/StudioPageTable'
 import AddNewStudioModal from '../../Components/AddNewStudioModal/AddNewStudioModal'
+import DeleteModal from '../../Components/DeleteModal/DeleteModal'
 
 const Studio = () => {
     const [openAddModal, setOpenAddModal] = useState(false)

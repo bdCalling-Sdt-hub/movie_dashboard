@@ -111,6 +111,6 @@
   .custom-jodit-editor .jodit-wysiwyg{
     background-color: #141A26;
   }
-  .jodit-toolbar-editor-collection_mode_horizontal {
-    position: none;
+.jodit-toolbar-editor-collection_mode_horizontal {
+    position: static !important;
   }

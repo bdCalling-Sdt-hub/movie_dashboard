@@ -9,6 +9,7 @@ import NewStudio from "../Pages/NewStudio/NewStudio";
 import Studio from "../Pages/Studio/Studio";
 import Profile from "../Pages/Profile/Profile";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path : '/privacy-policy',
                 element : <PrivacyPolicy />
+            },
+            {
+                path : '/terms-condition',
+                element : <TermsAndCondition />
             },
         ]
     },
