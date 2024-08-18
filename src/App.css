@@ -1,23 +1,23 @@
 
 .custom-table .ant-table {
-    background-color: #2f3136; 
+    background-color: #343944; 
     color: #ffffff; 
   }
   
   .custom-table .ant-table-thead > tr > th {
-    background-color: #2f3136;
+    background-color: #343944;
     color: #ffffff;
   }
   
   .custom-table .ant-table-tbody > tr > td {
-    background-color: #2f3136;
+    background-color: #343944;
     color: #ffffff; 
   }
   
   .custom-table .ant-table-tbody > tr,
   .custom-table .ant-table-tbody > tr:hover > td,
   .custom-table .ant-table-tbody > tr:hover {
-    background-color: #2f3136 !important; 
+    background-color: #343944 !important; 
     color: #ffffff !important; 
     transition: none !important;
   }
@@ -32,5 +32,5 @@
     border-bottom: none;
   }
   .custom-table .ant-table-cell-row-hover{
-    background: #2f3136 !important;
+    background: #343944 !important;
   }

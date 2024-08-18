@@ -71,7 +71,7 @@ const NewStudioTable = ({ pagination }) => {
         <Table
             columns={columns}
             dataSource={data}
-            pagination={false}
+            pagination={pagination}
             rowClassName="custom-row"
             className="custom-table"
         />
