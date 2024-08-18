@@ -78,15 +78,17 @@ export const Sidebar = () => {
     <div id='sidebar' className='flex flex-col gap-5   mt-10'>
       {
         links?.map((item, index) => {
+          const isActive = item.path === pathname;
+          const isSubMenuActive = item.sub_menu && item.sub_menu.some(subItem => subItem.path === pathname);
           if (item?.sub_menu) {
             return (
               <div key={index} >
-                <div className='absolute left-0 mt-5  bg-[#4E008C]  h-[54px] w-2  ' style={{
+                {isSubMenuActive ? <div className='absolute left-0 mt-1  bg-[#4E008C]  h-[54px] w-2  ' style={{
                   borderRadius: "0 10px 10px 0",
-                }}>
-                </div>
+                }}> 
+                </div>: ""}
                 <div onClick={() => toggleAccordion(index)}
-                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white bg-[#4E008C] py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white mt-5 text-[16px] mb-5`}
+                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white bg-[#4E008C] py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px] mb-5`}
                 >
                   {item?.icon}
                   {item?.label}
@@ -125,13 +127,16 @@ export const Sidebar = () => {
           } else {
             return (
               <div key={index} >
-                <div className='absolute left-0 mt-5  bg-[#4E008C]  h-[54px] w-2  ' style={{
-                  borderRadius: "0 10px 10px 0",
-                }}>
-                </div>
+                {
+                  isActive ?  <div className='absolute left-0   bg-[#4E008C]  h-[54px] w-[6px]  ' style={{
+                    borderRadius: "0 10px 10px 0",
+                  }}>
+                  </div> : ""
+                }
+               
                 <NavLink
-                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white bg-[#4E008C] py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white mt-5 text-[16px]`}
-                  to="/"
+                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white ${isActive ? "bg-[#4E008C]" : "bg-[#141A26]"}  py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px]`}
+                  to={item?.path}
                 >
                   {item?.icon}
                   {item?.label}
@@ -142,18 +147,6 @@ export const Sidebar = () => {
         })
       }
 
-      {/* <NavLink
-        className={` cursor-pointer text-white bg-[#4E008C] rounded-tr-2xl rounded-br-2xl hover:text-white text-[16px] `}
-        to="/"
-      >
-        Dashboard
-      </NavLink>
-      <NavLink
-        className={`cursor-pointer text-white bg-[#4E008C] rounded-tr-2xl rounded-br-2xl hover:text-white text-[16px]`}
-        to="/"
-      >
-        Dashboard
-      </NavLink> */}
 
     </div >
   )

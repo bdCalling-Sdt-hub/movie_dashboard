@@ -6,6 +6,7 @@ import ForgetPassword from "../Pages/Auth/ForgetPassword";
 import Otp from "../Pages/Auth/Otp";
 import UpdatePassword from "../Pages/Auth/UpdatePassword";
 import NewStudio from "../Pages/NewStudio/NewStudio";
+import Studio from "../Pages/Studio/Studio";
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 path : '/new-studio',
                 element : <NewStudio />
+            },
+            {
+                path : '/studio',
+                element : <Studio />
             },
         ]
     },
