@@ -10,6 +10,7 @@ import Studio from "../Pages/Studio/Studio";
 import Profile from "../Pages/Profile/Profile";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
+import ParamountStudio from "../Pages/ParamountStudio/ParamountStudio";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path : '/studio',
                 element : <Studio />
+            },
+            {
+                path : '/studio/paramount-studio',
+                element : <ParamountStudio />
             },
             {
                 path : '/profile',

@@ -1,16 +1,13 @@
 import { Space, Table } from 'antd';
-import img1 from '../../assets/Images/Google.png'
-import img2 from '../../assets/Images/Spotify.png'
+import React, { useEffect, useState } from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { IoEyeSharp } from 'react-icons/io5';
-import DeleteModal from '../DeleteModal/DeleteModal';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-const StudioPageTable = ({ pagination }) => {
-    const [deleteOpenModal, setDeleteOpenModal] = useState(false)
-
-
-
+import { IoMdAdd } from 'react-icons/io';
+import DeleteModal from '../../Components/DeleteModal/DeleteModal';
+import AddNewStudioModal from '../../Components/AddNewStudioModal/AddNewStudioModal';
+const ParamountStudio = () => {
+    const [openAddModal, setOpenAddModal] = useState(false)
 
     const data = [
         {
@@ -70,31 +67,33 @@ const StudioPageTable = ({ pagination }) => {
             key: 'action',
             render: () => (
                 <Space className=''>
-                    <EditOutlined className='cursor-pointer' style={{ color: '#AEB9E1' }} />
-                    <Link to={'/studio/paramount-studio'}><IoEyeSharp  className='cursor-pointer' style={{ color: '#AEB9E1' }} /></Link>
-                    <DeleteOutlined onClick={()=> setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
+
+                    <DeleteOutlined onClick={() => setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
                 </Space>
             ),
         },
     ];
-
-
-
-
     return (
-        <div>
+        <div className='m-5 bg-[#343944] rounded-md p-5'>
+
+            <div className='flex justify-between items-center '>
+                <h1 className='font-semibold text-[24px]'>Paramount Studio</h1>
+                <button onClick={() => setOpenAddModal(true)} className='flex items-center justify-center gap-2 bg-[#6200AF] px-4 py-2'>
+                    Add New Studio
+                    <IoMdAdd className='text-white' />
+                </button>
+            </div>
             <Table
                 columns={columns}
                 dataSource={data}
-                pagination={pagination}
+                pagination={true}
                 rowClassName="custom-row"
                 className="custom-table"
             />
 
-            <DeleteModal openAddModal={deleteOpenModal} setOpenAddModal={setDeleteOpenModal} />
+            <AddNewStudioModal setOpenAddModal={setOpenAddModal} openAddModal={openAddModal} />
         </div>
+    );
+};
 
-    )
-}
-
-export default StudioPageTable
+export default ParamountStudio;
