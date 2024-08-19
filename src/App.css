@@ -114,3 +114,8 @@
 .jodit-toolbar-editor-collection_mode_horizontal {
     position: static !important;
   }
+
+  /* custom pagination */
+  .custom-table .ant-pagination-total-text {
+    color :  #FFFFFF
+  } 

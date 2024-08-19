@@ -89,7 +89,15 @@ const StudioPageTable = ({ pagination }) => {
             <Table
                 columns={columns}
                 dataSource={data}
-                pagination={pagination}
+                pagination={{
+                    pageSizeOptions: 5,
+                    showTotal: (total, range) => ` ${range[0]}-${range[1]} of ${total}`,
+                    locale: {
+                        items_per_page: '',
+                        prev_page: 'Previous',
+                        next_page: 'Next',
+                    },
+                }}
                 rowClassName="custom-row"
                 className="custom-table"
             />
