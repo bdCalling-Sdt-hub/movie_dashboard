@@ -6,9 +6,10 @@ import { IoEyeSharp } from 'react-icons/io5';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AddNewStudioModal from '../AddNewStudioModal/AddNewStudioModal';
 const StudioPageTable = ({ pagination }) => {
     const [deleteOpenModal, setDeleteOpenModal] = useState(false)
-
+    const [openEditModal , setOpenEditModal] = useState(false)
 
 
 
@@ -70,7 +71,7 @@ const StudioPageTable = ({ pagination }) => {
             key: 'action',
             render: () => (
                 <Space className=''>
-                    <EditOutlined className='cursor-pointer' style={{ color: '#AEB9E1' }} />
+                    <EditOutlined onClick={()=> handelEditMovie()} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
                     <Link to={'/studio/paramount-studio'}><IoEyeSharp  className='cursor-pointer' style={{ color: '#AEB9E1' }} /></Link>
                     <DeleteOutlined onClick={()=> setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
                 </Space>
@@ -78,7 +79,9 @@ const StudioPageTable = ({ pagination }) => {
         },
     ];
 
-
+    const handelEditMovie=()=>{
+        setOpenEditModal(true)
+    }
 
 
     return (
@@ -92,6 +95,7 @@ const StudioPageTable = ({ pagination }) => {
             />
 
             <DeleteModal openAddModal={deleteOpenModal} setOpenAddModal={setDeleteOpenModal} />
+            <AddNewStudioModal  openAddModal={openEditModal} setOpenAddModal={setOpenEditModal} />
         </div>
 
     )
