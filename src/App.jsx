@@ -1,6 +1,7 @@
 
 import './App.css'
 import NewStudio from './Components/NewStudio/NewStudio'
+import RevinewChart from './Components/RevinewChart/RevinewChart'
 
 function App() {
   const data = [
@@ -35,7 +36,8 @@ function App() {
 
       </div>
       <div className='mt-5'>
-        <NewStudio/>
+        {/* <NewStudio/> */}
+        <RevinewChart/>
       </div>
 
     </div>

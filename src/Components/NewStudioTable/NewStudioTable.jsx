@@ -1,4 +1,4 @@
-import { Space, Table } from 'antd';
+import { Pagination, Space, Table } from 'antd';
 import img1 from '../../assets/Images/Google.png'
 import img2 from '../../assets/Images/Spotify.png'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -68,13 +68,35 @@ const NewStudioTable = ({ pagination }) => {
 
 
     return (
-        <Table
-            columns={columns}
-            dataSource={data}
-            pagination={pagination}
-            rowClassName="custom-row"
-            className="custom-table"
-        />
+        <div>
+            <Table
+                columns={columns}
+                dataSource={data}
+                pagination={pagination}
+                rowClassName="custom-row"
+                className="custom-table"
+            />
+
+            <div className="custom-pagination">
+                <Pagination
+                    total={460} // Set your total data count
+                    showTotal={(total, range) => `${range[0]} - ${range[1]} of ${total}`}
+                    defaultPageSize={10}
+                    showSizeChanger
+                    pageSizeOptions={['10', '20', '50']}
+                    itemRender={(current, type, originalElement) => {
+                        if (type === 'prev') {
+                            return <button className="pagination-button prev">←</button>;
+                        }
+                        if (type === 'next') {
+                            return <button className="pagination-button next">→</button>;
+                        }
+                        return originalElement;
+                    }}
+                />
+            </div>
+
+        </div>
     )
 }
 

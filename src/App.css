@@ -119,3 +119,72 @@
   .custom-table .ant-pagination-total-text {
     color :  #FFFFFF
   } 
+
+
+
+  /* Custom pagination */
+
+  .custom-pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #343944; /* Dark background */
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+  
+  .custom-pagination .ant-pagination-total-text {
+    color: #fff; /* White text */
+    margin-right: 16px;
+  }
+  
+  .custom-pagination .ant-pagination-options {
+    color: #fff;
+  }
+  
+  .pagination-button {
+    background-color: #1d1f27; /* Button background */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination-button:hover {
+    background-color: #3a3f51; /* Hover effect */
+  }
+  
+  .pagination-button.prev {
+    margin-right: 8px;
+  }
+  
+  .pagination-button.next {
+    margin-left: 8px;
+  }
+  
+  .ant-pagination-item-active {
+    background-color: #3a3f51 !important; /* Active page background */
+    border-color: #3a3f51 !important; /* Active page border */
+  }
+  
+  .ant-pagination-item {
+    background-color: #343944; /* Page number background */
+    color: #fff;
+    border: none;
+  }
+  
+  .ant-pagination-item:hover {
+    border-color: #3a3f51;
+  }
+
+  :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-item {
+    display: none;
+  }
+  :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-prev .ant-pagination-item-container, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-next .ant-pagination-item-container{
+    display: none;
+  }
+  :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-prev, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-next, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-prev, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-next {
+    min-width: 0px;
+  }
