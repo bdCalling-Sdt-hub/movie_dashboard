@@ -56,22 +56,11 @@ const StudioPageTable = ({ pagination }) => {
 
         },
         {
-            title: 'Movie',
-            dataIndex: 'movie',
-            key: 'movie',
-            render: (movie) => (
-                <Space>
-                    <img src={movie.poster} alt={movie.name} style={{ width: 30, height: 30, borderRadius: '50%' }} />
-                    <span>{movie.name}</span>
-                </Space>
-            ),
-        },
-        {
             title: 'Action',
             key: 'action',
             render: () => (
                 <Space className=''>
-                    <EditOutlined onClick={()=> handelEditMovie()} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
+                    {/* <EditOutlined onClick={()=> handelEditMovie()} className='cursor-pointer' style={{ color: '#AEB9E1' }} /> */}
                     <Link to={'/studio/paramount-studio'}><IoEyeSharp  className='cursor-pointer' style={{ color: '#AEB9E1' }} /></Link>
                     <DeleteOutlined onClick={()=> setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
                 </Space>

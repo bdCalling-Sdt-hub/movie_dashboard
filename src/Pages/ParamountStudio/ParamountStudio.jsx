@@ -13,14 +13,14 @@ const ParamountStudio = () => {
         {
             key: '1',
             serial: '1',
-            studio: { name: 'Hulu', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
+            releaseDate : '05-12-2024',
             totalMovie: 12,
             movie: { name: 'The Godfather', poster: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
         },
         {
             key: '2',
             serial: '2',
-            studio: { name: 'max', logo: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
+            releaseDate : '05-12-2024',
             totalMovie: 15,
             movie: { name: 'Inception', poster: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
         },
@@ -35,23 +35,6 @@ const ParamountStudio = () => {
             key: 'serial',
         },
         {
-            title: 'Studio',
-            dataIndex: 'studio',
-            key: 'studio',
-            render: (studio) => (
-                <Space>
-                    <img src={studio.logo} alt={studio.name} style={{ width: 30, height: 30, borderRadius: '50%' }} />
-                    <span>{studio.name}</span>
-                </Space>
-            ),
-        },
-        {
-            title: 'Total Movie',
-            dataIndex: 'totalMovie',
-            key: 'totalMovie',
-
-        },
-        {
             title: 'Movie',
             dataIndex: 'movie',
             key: 'movie',
@@ -61,6 +44,11 @@ const ParamountStudio = () => {
                     <span>{movie.name}</span>
                 </Space>
             ),
+        },
+        {
+            title: 'Release Date',
+            dataIndex: 'releaseDate',
+            key: 'releaseDate',
         },
         {
             title: 'Action',
