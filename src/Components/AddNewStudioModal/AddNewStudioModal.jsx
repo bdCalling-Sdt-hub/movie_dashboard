@@ -37,7 +37,7 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
             className='custom-modal'
         >
             <div >
-                <p className='text-xl  py-2 font-semibold'>Add New Studio</p>
+                <p className='text-xl  py-2 font-semibold'>New Studio</p>
                 <Form className=''
                     layout='vertical'
                     onFinish={onFinish}
@@ -45,8 +45,8 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                     <div className='flex gap-3  mt-5'>
                         <div className=' w-full'>
                             <Form.Item
-                                name={`Add Studio Name`}
-                                label={`Add Studio Name`}
+                                name={`Studio Name`}
+                                label={`Studio Name`}
                                 rules={[
                                     {
                                         message: 'Studio Name is required',
@@ -57,30 +57,7 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                                 <Input className=' border outline-none w-full ' placeholder='' />
                             </Form.Item>
                         </div>
-                        <div className=' w-full'>
-                            <Form.Item
-                                name={`Select Movie`}
-                                label={`Select movie app`}
-                                rules={[
-                                    {
-                                        message: 'Studio Name is required',
-
-                                    }
-                                ]}
-                            >
-                                <Input className=' border outline-none' placeholder='' />
-                            </Form.Item>
-                        </div>
                     </div>
-
-
-                    <Form.Item label="Add Movie Name" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} className='pb-0' >
-                        <Select defaultValue="Add Movie Name">
-                            <Option value="all">Select Movie</Option>
-                            <Option value="movie 1">Movie 1</Option>
-                            <Option value="movie 1">Movie 2</Option>
-                        </Select>
-                    </Form.Item>
 
 
                     <div className='my-8'>
@@ -88,11 +65,6 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                             <p className="ant-upload-drag-icon">
                                 <InboxOutlined />
                             </p>
-                            {/* <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                            <p className="ant-upload-hint">
-                                Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                                banned files.
-                            </p> */}
                         </Dragger>
                     </div>
 
@@ -101,11 +73,12 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
 
 
                     <div className='flex items-center justify-center gap-4'>
-                        <button className='flex items-center gap-2 py-3 px-8 bg-[#6200AF]  text-white font-semibold rounded-full'>
-                            save
-                        </button>
+                        
                         <button className='py-2 px-6 flex items-center gap-1  border  rounded-full text-white font-semibold'>
                             Cancel
+                        </button>
+                        <button className='flex items-center gap-2 py-3 px-8 bg-[#6200AF]  text-white font-semibold rounded-full'>
+                            save
                         </button>
                     </div>
 

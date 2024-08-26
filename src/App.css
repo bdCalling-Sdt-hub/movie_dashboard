@@ -1,40 +1,40 @@
 .custom-table .ant-table {
-    background-color: #343944;
-    color: #ffffff;
+  background-color: #343944;
+  color: #ffffff;
 }
 
 .custom-table .ant-table-thead>tr>th {
-    background-color: #343944;
-    color: #ffffff;
+  background-color: #343944;
+  color: #ffffff;
 }
 
 .custom-table .ant-table-tbody>tr>td {
-    background-color: #343944;
-    color: #ffffff;
+  background-color: #343944;
+  color: #ffffff;
 }
 
 .custom-table .ant-table-tbody>tr,
 .custom-table .ant-table-tbody>tr:hover>td,
 .custom-table .ant-table-tbody>tr:hover {
-    background-color: #343944 !important;
-    color: #ffffff !important;
-    transition: none !important;
+  background-color: #343944 !important;
+  color: #ffffff !important;
+  transition: none !important;
 }
 
 :where(.css-dev-only-do-not-override-1c0na6j).ant-table-wrapper .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
-    position: fixed !important;
+  position: fixed !important;
 }
 
 :where(.css-dev-only-do-not-override-1c0na6j).ant-table-wrapper .ant-table-thead>tr>th {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 :where(.css-dev-only-do-not-override-1c0na6j).ant-table-wrapper .ant-table-tbody>tr>td {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .custom-table .ant-table-cell-row-hover {
-    background: #343944 !important;
+  background: #343944 !important;
 }
 
 
@@ -42,149 +42,195 @@
 /* Custom Modal background color */
 /* Targeting the modal content */
 .custom-modal .ant-modal-content {
-    background-color: #141A26 !important;
-    /* Set the background color */
-    color: #ffffff;
-    /* Optional: Set text color to white */
+  background-color: #141A26 !important;
+  /* Set the background color */
+  color: #ffffff;
+  /* Optional: Set text color to white */
 }
 
 /* Optional: Adjust header and footer if needed */
 .custom-modal .ant-modal-header {
-    background-color: #141A26 !important;
-    /* Same background color for header */
+  background-color: #141A26 !important;
+  /* Same background color for header */
 }
 
 .custom-modal .ant-modal-footer {
-    background-color: #141A26 !important;
-    /* Same background color for footer */
+  background-color: #141A26 !important;
+  /* Same background color for footer */
 }
 
-.custom-modal .ant-form-item-label > label {
-    color: #EBEBEB !important; /* Change the label color */
-  }
+.custom-modal .ant-form-item-label>label {
+  color: #EBEBEB !important;
+  /* Change the label color */
+}
 
 
-  .custom-modal .ant-input {
-    background-color: #343944; /* Set the input background color */
-    color: #ffffff; 
-    border: none;
-  }
-  
-  .custom-modal .ant-input::placeholder {
-    color: #cccccc; /* Optional: Set the placeholder text color */
-  }
+.custom-modal .ant-input {
+  background-color: #343944;
+  /* Set the input background color */
+  color: #ffffff;
+  border: none;
+}
 
-  :where(.css-dev-only-do-not-override-1c0na6j).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-    background-color: #343944;
-    border: none;
-  }
+.custom-modal .ant-input::placeholder {
+  color: #cccccc;
+  /* Optional: Set the placeholder text color */
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #343944;
+  border: none;
+}
 
 
 
-  :where(.css-dev-only-do-not-override-1c0na6j).ant-upload-wrapper .ant-upload-drag p.ant-upload-drag-icon .anticon {
-    color: white;
-    font-size: 48px;
+:where(.css-dev-only-do-not-override-1c0na6j).ant-upload-wrapper .ant-upload-drag p.ant-upload-drag-icon .anticon {
+  color: white;
+  font-size: 48px;
 }
 
 
 
 
 .custom-jodit-editor .jodit-react-container .jodit-container .jodit-toolbar__box .jodit-toolbar-editor-collection {
-    align-items: flex-end;
-    background-color: #141A26;
-  }
-  
-  .jodit-footer {
-    display: none !important;
-  }
-  .custom-jodit-editor .jodit-status-bar{
-    display: none;
-  }
-  .custom-jodit-editor .jodit-toolbar__box:not(:empty) {
-    border-bottom: 0px;
-  }
-  
-  .custom-jodit-editor .jodit-container:not(.jodit_inline){
-    background-color: #F6F6F6;
-    border: none;
-  }
-  .custom-jodit-editor .jodit-wysiwyg{
-    background-color: #141A26;
-  }
+  align-items: flex-end;
+  background-color: #141A26;
+}
+
+.jodit-footer {
+  display: none !important;
+}
+
+.custom-jodit-editor .jodit-status-bar {
+  display: none;
+}
+
+.custom-jodit-editor .jodit-toolbar__box:not(:empty) {
+  border-bottom: 0px;
+}
+
+.custom-jodit-editor .jodit-container:not(.jodit_inline) {
+  background-color: #F6F6F6;
+  border: none;
+}
+
+.custom-jodit-editor .jodit-wysiwyg {
+  background-color: #141A26;
+}
+
 .jodit-toolbar-editor-collection_mode_horizontal {
-    position: static !important;
-  }
+  position: static !important;
+}
 
-  /* custom pagination */
-  .custom-table .ant-pagination-total-text {
-    color :  #FFFFFF
-  } 
+/* custom pagination */
+.custom-table .ant-pagination-total-text {
+  color: #FFFFFF
+}
 
 
 
-  /* Custom pagination */
+/* Custom pagination */
 
-  .custom-pagination {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #343944; /* Dark background */
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 16px;
-  }
-  
-  .custom-pagination .ant-pagination-total-text {
-    color: #fff; /* White text */
-    margin-right: 16px;
-  }
-  
-  .custom-pagination .ant-pagination-options {
-    color: #fff;
-  }
-  
-  .pagination-button {
-    background-color: #1d1f27; /* Button background */
-    color: #fff; /* Button text color */
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .pagination-button:hover {
-    background-color: #3a3f51; /* Hover effect */
-  }
-  
-  .pagination-button.prev {
-    margin-right: 8px;
-  }
-  
-  .pagination-button.next {
-    margin-left: 8px;
-  }
-  
-  .ant-pagination-item-active {
-    background-color: #3a3f51 !important; /* Active page background */
-    border-color: #3a3f51 !important; /* Active page border */
-  }
-  
-  .ant-pagination-item {
-    background-color: #343944; /* Page number background */
-    color: #fff;
-    border: none;
-  }
-  
-  .ant-pagination-item:hover {
-    border-color: #3a3f51;
-  }
+.custom-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #343944;
+  /* Dark background */
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
 
-  :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-item {
-    display: none;
-  }
-  :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-prev .ant-pagination-item-container, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-next .ant-pagination-item-container{
-    display: none;
-  }
-  :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-prev, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-next, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-prev, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-next {
-    min-width: 0px;
-  }
+.custom-pagination .ant-pagination-total-text {
+  color: #fff;
+  /* White text */
+  margin-right: 16px;
+}
+
+.custom-pagination .ant-pagination-options {
+  color: #fff;
+}
+
+.pagination-button {
+  background-color: #1d1f27;
+  /* Button background */
+  color: #fff;
+  /* Button text color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-button:hover {
+  background-color: #3a3f51;
+  /* Hover effect */
+}
+
+.pagination-button.prev {
+  margin-right: 8px;
+}
+
+.pagination-button.next {
+  margin-left: 8px;
+}
+
+.ant-pagination-item-active {
+  background-color: #3a3f51 !important;
+  /* Active page background */
+  border-color: #3a3f51 !important;
+  /* Active page border */
+}
+
+.ant-pagination-item {
+  background-color: #343944;
+  /* Page number background */
+  color: #fff;
+  border: none;
+}
+
+.ant-pagination-item:hover {
+  border-color: #3a3f51;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-item {
+  display: none;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-prev .ant-pagination-item-container,
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-next .ant-pagination-item-container {
+  display: none;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-prev,
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-next,
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-prev,
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-jump-next {
+  min-width: 0px;
+}
+
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-modal .ant-modal-close {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-disabled .ant-pagination-item-link,
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-disabled:hover .ant-pagination-item-link {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-next .ant-pagination-item-link {
+  padding: 0px 5px;
+  background-color: #0A1330
+}
+/* :where(.css-dev-only-do-not-override-1c0na6j).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #0A1330;
+  color : white;
+  cursor: pointer;
+} */
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-modal .ant-modal-close:hover {
+  color: white;
+}
