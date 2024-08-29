@@ -7,7 +7,8 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddNewStudioModal from '../AddNewStudioModal/AddNewStudioModal';
-const StudioPageTable = ({ pagination }) => {
+import { MdModeEditOutline, MdOutlineDelete } from 'react-icons/md';
+const StudioPageTable = ({ edit }) => {
     const [deleteOpenModal, setDeleteOpenModal] = useState(false)
     const [openEditModal, setOpenEditModal] = useState(false)
 
@@ -31,6 +32,7 @@ const StudioPageTable = ({ pagination }) => {
             studio: { name: 'max', logo: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
             totalMovie: 15,
             movie: { name: 'Inception', poster: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
+           
         },
     ];
 
@@ -46,6 +48,7 @@ const StudioPageTable = ({ pagination }) => {
             title: 'Studio',
             dataIndex: 'studio',
             key: 'studio',
+            align: "center",
             render: (studio) => (
                 <Space>
                     <img src={studio.logo} alt={studio.name} style={{ width: 30, height: 30, borderRadius: '50%' }} />
@@ -57,25 +60,22 @@ const StudioPageTable = ({ pagination }) => {
             title: 'Total Movie',
             dataIndex: 'totalMovie',
             key: 'totalMovie',
-
+            align: "center"
         },
         {
             title: 'Action',
             key: 'action',
+            align : 'center',
             render: () => (
                 <Space className=''>
-                    {/* <EditOutlined onClick={()=> handelEditMovie()} className='cursor-pointer' style={{ color: '#AEB9E1' }} /> */}
-                    <Link to={'/studio/paramount-studio'}><IoEyeSharp className='cursor-pointer' style={{ color: '#AEB9E1' }} /></Link>
-                    <DeleteOutlined onClick={() => setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
+                    { edit && <Link to={'/add-movies/edit-movies'}><MdModeEditOutline className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>}
+                    <Link to={'/studio/paramount-studio'}><IoEyeSharp className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>
+                    <MdOutlineDelete size={25} onClick={() => setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
+
                 </Space>
             ),
         },
     ];
-
-    const handelEditMovie = () => {
-        setOpenEditModal(true)
-    }
-
 
     return (
         <div>
@@ -96,7 +96,6 @@ const StudioPageTable = ({ pagination }) => {
             />
 
             <DeleteModal openAddModal={deleteOpenModal} setOpenAddModal={setDeleteOpenModal} />
-            <AddNewStudioModal openAddModal={openEditModal} setOpenAddModal={setOpenEditModal} />
         </div>
 
     )

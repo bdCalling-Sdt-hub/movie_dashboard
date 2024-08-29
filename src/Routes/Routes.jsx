@@ -11,6 +11,8 @@ import Profile from "../Pages/Profile/Profile";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import ParamountStudio from "../Pages/ParamountStudio/ParamountStudio";
+import AddMovies from "../Pages/AddMovies/AddMovies";
+import EditMovieDetails from "../Pages/EditMovieDetails/EditMovieDetails";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
             {
                 path : '/studio',
                 element : <Studio />
+            },
+            {
+                path : '/add-movies',
+                element : <AddMovies />
+            },
+            {
+                path : '/add-movies/edit-movies',
+                element : <EditMovieDetails />
             },
             {
                 path : '/studio/paramount-studio',

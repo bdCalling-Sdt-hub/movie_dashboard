@@ -234,3 +234,8 @@
 :where(.css-dev-only-do-not-override-1c0na6j).ant-modal .ant-modal-close:hover {
   color: white;
 }
+
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-select-single.ant-select-open .ant-select-selection-item {
+  color: white;
+}

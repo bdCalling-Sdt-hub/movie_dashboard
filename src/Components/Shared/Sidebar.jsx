@@ -2,6 +2,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import dash from '../../assets/Images/dash.png'
 import studio from '../../assets/Images/studio.png'
 import setting from '../../assets/Images/setting.png'
+import movie from '../../assets/Images/movie.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
 export const Sidebar = () => {
@@ -29,6 +30,13 @@ export const Sidebar = () => {
       icon: <img src={studio} />,
       sub_menu: false
     },
+    {
+      path: '/add-movies',
+      label: 'Add Movies',
+      icon: <img src={movie} />,
+      sub_menu: false
+    },
+   
     {
       path: '#',
       label: 'Setting',
