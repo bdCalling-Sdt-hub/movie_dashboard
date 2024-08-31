@@ -1,21 +1,40 @@
 import { Button, Checkbox, Form, Input } from "antd"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useLoginUserMutation } from "../../redux/api/authApi";
+import { toast } from "sonner";
 
 const Login = () => {
-
+    const [loginUser, { data, isLoading, isSuccess, isError }] = useLoginUserMutation()
+    const navigate = useNavigate()
     // Form value
-    const onFinish = (values) => {
-        console.log(values)        
+    const onFinish = async (values) => {
+
+        const data = {
+            email: values?.email, password: values?.password
+        }
+
+        try {
+            const res = await loginUser(data).unwrap()
+            if(res?.token){
+                localStorage.setItem('token', JSON.stringify(res?.token));
+                navigate("/");
+                toast.success('Logged In Successfully!!')
+            }
+
+        } catch (error) {
+            toast.error(error?.data?.message)
+
+        }
     };
 
     return (
         <div
             className=" flex justify-center items-center h-screen bg-[#141A26]"
-           
+
         >
             <div className=" flex justify-center items-center">
                 <Form
-                  
+
                     initialValues={{
                         remember: true,
                     }}
@@ -41,7 +60,7 @@ const Login = () => {
                     <div style={{ marginBottom: "24px" }}>
                         <label
                             htmlFor="email"
-                            style={{ display: "block", marginBottom: "5px" , color: '#6D6D6D'}}
+                            style={{ display: "block", marginBottom: "5px", color: '#6D6D6D' }}
                         >
                             {" "}
                             Email address:{" "}
@@ -73,7 +92,7 @@ const Login = () => {
 
                     <div style={{ marginBottom: "24px" }}>
                         <label
-                            style={{ display: "block", marginBottom: "5px",  color: '#6D6D6D' }}
+                            style={{ display: "block", marginBottom: "5px", color: '#6D6D6D' }}
                             htmlFor="password"
                         >
                             Password
@@ -110,7 +129,7 @@ const Login = () => {
                         }}
                     >
                         <Form.Item name="remember" valuePropName="checked" noStyle>
-                            <Checkbox  className=" text-[#6D6D6D]">Remember me</Checkbox>
+                            <Checkbox className=" text-[#6D6D6D]">Remember me</Checkbox>
                         </Form.Item>
                         <Link
                             className="login-form-forgot "
@@ -138,7 +157,7 @@ const Login = () => {
                             <Link
                                 className="login-form-forgot  "
                                 style={{ color: "white" }}
-                                to="/"
+                                to=""
                             >
                                 Sign In
                             </Link>
