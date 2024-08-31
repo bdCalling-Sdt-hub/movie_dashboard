@@ -33,9 +33,15 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                                 placeholder="Select a studio"
                                 style={{ width: '100%' }}
                                 options={[
-                                    { value: 'jack', label: 'Jack' },
                                     { value: 'lucy', label: 'Lucy' },
                                     { value: 'yiminghe', label: 'Yiminghe' },
+                                    { value: 'yiminghe', label: 'Yiminghe' },
+                                    { value: 'yiminghe', label: 'Yiminghe' },  
+                                    { value: 'yiminghe', label: 'Yiminghe' },
+                                    { value: 'jack', label: 'Jack' },
+
+                                 
+                                   
                                 ]}
                             />
                         </Form.Item>

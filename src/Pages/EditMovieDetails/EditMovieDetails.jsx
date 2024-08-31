@@ -1,38 +1,52 @@
-import { Button, Card, Checkbox, Col, Row } from 'antd';
-import React from 'react'
+import { Button, Card, Checkbox, Col, Input, Row } from 'antd';
+import Search from 'antd/es/input/Search';
+import React, { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
-
+import { SearchOutlined } from '@ant-design/icons';
 const EditMovieDetails = () => {
+
+    const [selectCard, setSelectCard] = useState(null)
+    const handleSelectCard = (cardId) => {
+        console.log(cardId)
+    }
     const shows = [
         {
+            id : 1,
             title: 'The Crown',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg', // Replace with actual image path
         },
         {
+            id : 2,
             title: 'The Terminator',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
         {
+            id : 3,
             title: 'The Dark Knight',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
         {
+            id : 4,
             title: 'The Dark Knight',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
         {
+            id : 5,
             title: 'The Dark Knight',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
         {
+            id : 6,
             title: 'The Dark Knight',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
         {
+            id : 7,
             title: 'The Dark Knight',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
         {
+            id : 8,
             title: 'The Dark Knight',
             image: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg',
         },
@@ -50,29 +64,42 @@ const EditMovieDetails = () => {
             </div>
 
 
-
+            <div className='flex justify-between items-center mt-5'>
+                <h1>Select Movie</h1>
+                <Input suffix={<SearchOutlined className='text-white' />} placeholder='Search here' className='custom-input w-[30%] bg-[#343944] hover:bg-[#343944] rounded-full' />
+            </div>
             <div className="grid grid-cols-4 py-10">
                 {
                     shows.map((show, i) => (
                         <div key={i} className='flex items-center gap-2 py-2 my-4 '>
-                            <Checkbox className="checkbox-style bg-" />
+                            <Checkbox className="checkbox-style " />
                             <img src="https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg" alt="" className="show-image h-10 w-10 rounded-full" />
                             <p className='text-[20px]'>The Dark Knight</p>
                         </div>
                     ))
                 }
 
-                {/* <Row gutter={[16, 16]} justify="center">
-                    {shows.map((show, index) => (
-                        <Col span={4} key={index} className="show-col">
-                            <Card className="show-card">
-                                
-                                <img src={show.image} alt={show.title} className="show-image" />
-                                <div className="show-title">{show.title}</div>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row> */}
+                {/* {['1', '2', '3'].map((cardId) => (
+                    <Card
+                        key={cardId}
+                        style={{
+                            width: 300,
+                            border: selectCard === cardId ? '2px solid #1890ff' : '1px solid #d9d9d9',
+                            position: 'relative', 
+                            cursor: 'pointer',
+                        }}
+                        onClick={() => handleSelectCard(cardId)}
+                    >
+                        {selectCard === cardId && (
+                            <CheckCircleTwoTone
+                                twoToneColor="#1890ff"
+                                style={{ position: 'absolute', top: 8, right: 8, fontSize: '24px' }}
+                            />
+                        )}
+                        <Card.Meta title={`Card ${cardId}`} description={`This is the description of card ${cardId}.`} />
+                    </Card>
+                ))} */}
+
             </div>
         </div>
     )

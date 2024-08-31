@@ -239,3 +239,49 @@
 :where(.css-dev-only-do-not-override-1c0na6j).ant-select-single.ant-select-open .ant-select-selection-item {
   color: white;
 }
+:where(.css-dev-only-do-not-override-1c0na6j).ant-input-outlined {
+  background-color: #343944 !important ;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-input-affix-wrapper {
+  color: white;
+}
+.custom-input .ant-input::placeholder {
+  color: #B0B0B0; /* Set your desired placeholder color */
+  opacity: 1;
+}
+
+/* Tabs */
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: white !important;
+  border-color: none !important;
+  background-color: #4E008C;
+  padding: 10px 50px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.ant-tabs .ant-tabs-ink-bar {
+  background: #4E008C !important;
+}
+
+.ant-upload-select {
+  height: 30px !important;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-tabs-top >.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-1c0na6j).ant-tabs-bottom >.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-1c0na6j).ant-tabs-top >div>.ant-tabs-nav::before, :where(.css-dev-only-do-not-override-1c0na6j).ant-tabs-bottom >div>.ant-tabs-nav::before {
+  border-bottom: none;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-tabs >.ant-tabs-nav, :where(.css-dev-only-do-not-override-1c0na6j).ant-tabs >div>.ant-tabs-nav {
+  height: 70px !important;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-tabs .ant-tabs-tab-btn {
+  outline: none;
+  transition: all 0.3s;
+  color: #4E008C;
+  background-color: white;
+  padding: 10px 50px;
+  font-size: 18px;
+  font-weight: 600;
+}
