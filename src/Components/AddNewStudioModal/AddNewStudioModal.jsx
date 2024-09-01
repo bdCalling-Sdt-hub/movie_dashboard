@@ -2,7 +2,7 @@ import { Form, Input, Modal, Select, Upload } from 'antd'
 import Dragger from 'antd/es/upload/Dragger'
 import { InboxOutlined } from '@ant-design/icons';
 // const { Dragger } = Upload;
-const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
+const AddNewStudioModal = ({ openAddModal, setOpenAddModal  }) => {
     const onFinish = (values) => {
         console.log('Form values:', values);
     };

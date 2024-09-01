@@ -6,12 +6,16 @@ import DeleteModal from '../../Components/DeleteModal/DeleteModal'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Input, Tabs } from 'antd'
 import { Link } from 'react-router-dom'
+import { useGetStudioListQuery } from '../../redux/api/studioApi'
 
 const Studio = () => {
+    const {data : studioList ,  isError, isLoading} =  useGetStudioListQuery()
+    // console.log(studioList)
     const [openAddModal, setOpenAddModal] = useState(false)
     const [type, setType] = useState('movie')
-    console.log(type)
 
+    // console.log(type)
+    /** studio table tab data */
     const items = [
 
         {
@@ -71,7 +75,7 @@ const Studio = () => {
             </div>
 
 
-            <AddNewStudioModal setOpenAddModal={setOpenAddModal} openAddModal={openAddModal} />
+            <AddNewStudioModal setOpenAddModal={setOpenAddModal} openAddModal={openAddModal}  />
 
         </div>
     )
