@@ -7,10 +7,24 @@ const baseQuery = fetchBaseQuery({
         if (token) {
             headers.set('Authorization', `Bearer ${token}`);
         }
-        headers.set('Content-Type', 'application/json');
+        // headers.set('Content-Type', 'application/json');
         return headers;
     },
 });
+
+
+// const baseQuery = fetchBaseQuery({
+//     baseUrl: 'http://103.161.9.133:7000/',
+//     prepareHeaders: (headers, { getState }) => {
+//       const token = getState().auth?.token;
+  
+//       if (token) {
+//         headers.set('authorization', `Bearer ${token}`);
+//       }
+  
+//       return headers;
+//     },
+//   });
 
 export const baseApi = createApi({
     reducerPath: 'baseApi',

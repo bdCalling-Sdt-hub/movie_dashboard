@@ -2,35 +2,50 @@ import { Form, Input, Modal, Select, Upload, message } from 'antd'
 import Dragger from 'antd/es/upload/Dragger'
 import { InboxOutlined } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
+import { useCreateNewStudioMutation, useGetStudioListQuery } from '../../redux/api/studioApi';
+import axios from 'axios';
+import { BiCloudUpload } from 'react-icons/bi';
+import { useState } from 'react';
 // import { message, Upload } from 'antd';
 // const { Dragger } = Upload;
 // const { Dragger } = Upload;
 const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
-    const onFinish = (values) => {
-        console.log('Form values:', values);
-        console.log(values?.image?.fileList[0]);
+    const { data: studios, refetch } = useGetStudioListQuery();
+    const [fileList, setFileList] = useState(null);
+    const [fileName, setFileName] = useState("");
+    const onFinish = async (values) => {
+        console.log(values);
+        console.log(fileList);
+
+        const formData = new FormData();
+        formData.append("name", values?.studio);
+        formData.append("logo", fileList);
+        formData.append("description", values?.description);
+
+
+        axios.post('http://103.161.9.133:7000/studio/create-studio', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
+        })
+            .then((res) =>{
+                refetch()
+            })
+            .catch((err) => console.log(err));
+
+            setOpenAddModal(false);
+        setFileName("");
     };
 
 
-    // const props = {
-    //     name: 'file',
-    //     multiple: true,
-    //     // action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
-    //     onChange(info) {
-    //         const { status } = info.file;
-    //         if (status !== 'uploading') {
-    //             console.log(info.file, info.fileList);
-    //         }
-    //         if (status === 'done') {
-    //             message.success(`${info.file.name} file uploaded successfully.`);
-    //         } else if (status === 'error') {
-    //             message.error(`${info.file.name} file upload failed.`);
-    //         }
-    //     },
-    //     onDrop(e) {
-    //         console.log('Dropped files', e.dataTransfer.files);
-    //     },
-    // };
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        setFileList(selectedFile);
+        setFileName(selectedFile.name);
+    };
+
+
 
     return (
         <Modal
@@ -56,14 +71,29 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                                 <Input placeholder="Enter Studio Name " className='py-2' variant="filled" />
 
                             </Form.Item>
-                            <Form.Item label="Image" name="image">
-                                <Dragger  >
-                                    <p className="ant-upload-drag-icon">
-                                        <InboxOutlined />
-                                    </p>
+                            <div className="flex flex-col items-center">
 
-                                </Dragger>
-                            </Form.Item>
+                                <div className="relative w-full">
+                                    <label
+                                        htmlFor="pdfFile"
+                                        className="flex items-center justify-center w-full h-10 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                    >
+
+                                        <BiCloudUpload size={25} />
+
+                                        <span className="text-gray-500 ml-2">
+                                            {fileName ? fileName : "Click to Upload"}
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="pdfFile"
+                                        onChange={handleFileChange}
+                                        className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                                        required
+                                    />
+                                </div>
+                            </div>
                             <Form.Item label="Description" name="description">
                                 <TextArea placeholder='Description...' rows={4} />
                             </Form.Item>

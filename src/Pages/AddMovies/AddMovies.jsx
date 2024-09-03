@@ -33,3 +33,9 @@ const AddMovies = () => {
 }
 
 export default AddMovies
+
+
+
+
+
+12
