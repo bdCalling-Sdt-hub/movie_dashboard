@@ -68,11 +68,11 @@ const Studio = () => {
 
 
 
-
+{/* 
             <div className='mt-5'>
-                {/* <StudioPageTable edit={false} /> */}
                 <Tabs className='text-white' defaultActiveKey="1" items={items} onChange={onChange} />
-            </div>
+            </div> */}
+            <StudioPageTable edit={false} />
 
 
             <AddNewStudioModal setOpenAddModal={setOpenAddModal} openAddModal={openAddModal}  />
