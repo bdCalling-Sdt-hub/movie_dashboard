@@ -15,23 +15,7 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
       setPageSize(size);
     };
 
-    // const data = [
-    //     {
-    //         key: '1',
-    //         serial: '1',
-    //         studio: { name: 'Hulu', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
-    //         totalMovie: 12,
-    //         movie: { name: 'The Godfather', poster: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
-    //     },
-    //     {
-    //         key: '2',
-    //         serial: '2',
-    //         studio: { name: 'max', logo: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
-    //         totalMovie: 15,
-    //         movie: { name: 'Inception', poster: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
-           
-    //     },
-    // ];
+   
 
 
     const handleDeleteStudio = (studio)=>{
@@ -51,7 +35,6 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
             title: 'Studio',
             dataIndex: 'studio',
             key: 'studio',
-            align: "center",
             render: (studio) => (
                 <Space>
                     <img src={studio.logo} alt={studio.name} style={{ width: 30, height: 30, borderRadius: '50%' }} />

@@ -11,12 +11,10 @@ import { imgURL } from '../../redux/api/baseApi'
 
 const Studio = () => {
     const { data: studioList, isError, isLoading } = useGetStudioListQuery()
-    console.log(studioList)
     const [openAddModal, setOpenAddModal] = useState(false)
     const [type, setType] = useState('movie')
 
 
-    console.log(studioList);
     // Formatted studio table data
     const formattedTable = studioList?.data?.map((studio, i) => (
         {    

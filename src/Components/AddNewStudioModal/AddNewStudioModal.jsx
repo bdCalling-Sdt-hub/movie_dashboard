@@ -1,22 +1,17 @@
-import { Form, Input, Modal, Select, Upload, message } from 'antd'
-import Dragger from 'antd/es/upload/Dragger'
-import { InboxOutlined } from '@ant-design/icons';
+import { Form, Input, Modal} from 'antd'
 import TextArea from 'antd/es/input/TextArea';
-import { useCreateNewStudioMutation, useGetStudioListQuery } from '../../redux/api/studioApi';
+import {  useGetStudioListQuery } from '../../redux/api/studioApi';
 import axios from 'axios';
-import { BiCloudUpload } from 'react-icons/bi';
 import { useState } from 'react';
-// import { message, Upload } from 'antd';
-// const { Dragger } = Upload;
-// const { Dragger } = Upload;
+import { IoMdImage } from 'react-icons/io';
+import { toast } from 'sonner';
 const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
     const { data: studios, refetch } = useGetStudioListQuery();
     const [fileList, setFileList] = useState(null);
     const [fileName, setFileName] = useState("");
-    const onFinish = async (values) => {
-        console.log(values);
-        console.log(fileList);
 
+    // handle add new stadio
+    const onFinish = async (values) => {
         const formData = new FormData();
         formData.append("name", values?.studio);
         formData.append("logo", fileList);
@@ -30,13 +25,17 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
             }
         })
             .then((res) =>{
+                if(res?.data?.success){
+                    toast.success(res?.data?.message)
+                }
                 refetch()
             })
-            .catch((err) => console.log(err));
+            .catch((err) => toast.error('Something went wrong!!'));
 
             setOpenAddModal(false);
         setFileName("");
     };
+
 
 
     const handleFileChange = (e) => {
@@ -76,10 +75,10 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                                 <div className="relative w-full">
                                     <label
                                         htmlFor="pdfFile"
-                                        className="flex items-center justify-center w-full h-10 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                        className="flex items-center justify-center w-full h-32 mb-2  bg-[#343944]  rounded-lg cursor-pointer  focus:outline-none focus:ring-2 "
                                     >
 
-                                        <BiCloudUpload size={25} />
+                                        <IoMdImage  className='text-white' size={25} />
 
                                         <span className="text-gray-500 ml-2">
                                             {fileName ? fileName : "Click to Upload"}
