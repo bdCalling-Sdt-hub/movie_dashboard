@@ -16,10 +16,11 @@ const Studio = () => {
     const [type, setType] = useState('movie')
 
 
-
+    console.log(studioList);
     // Formatted studio table data
     const formattedTable = studioList?.data?.map((studio, i) => (
-        {   
+        {    
+            id : studio?._id,   
             key : i+1,
             serial: i + 1,
             studio: { name: studio?.name, logo: `${imgURL}${studio?.logo}` },

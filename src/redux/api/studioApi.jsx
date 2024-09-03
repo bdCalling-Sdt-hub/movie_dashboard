@@ -6,8 +6,16 @@ const studioApi = baseApi.injectEndpoints({
             query : ()=>({
                 url : '/studio/get-studio',
                 method : "GET"
-            })
+            }),
+            providesTags : ["allStudio"]
+        }),
+        deleteStudio : builder.mutation({
+            query : (id)=>({
+                url : `/studio/delete-studio/${id}`,
+                method : "DELETE"
+            }),
+            invalidatesTags : ["allStudio"]
         })
     })
 })
-export const { useGetStudioListQuery } = studioApi;
+export const { useGetStudioListQuery, useDeleteStudioMutation } = studioApi;

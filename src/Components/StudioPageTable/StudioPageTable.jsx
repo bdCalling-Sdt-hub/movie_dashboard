@@ -1,16 +1,13 @@
 import { Space, Table } from 'antd';
-import img1 from '../../assets/Images/Google.png'
-import img2 from '../../assets/Images/Spotify.png'
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { IoEyeSharp } from 'react-icons/io5';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AddNewStudioModal from '../AddNewStudioModal/AddNewStudioModal';
 import { MdModeEditOutline, MdOutlineDelete } from 'react-icons/md';
 const StudioPageTable = ({ edit ,formattedTable}) => {
     const [deleteOpenModal, setDeleteOpenModal] = useState(false)
     const [openEditModal, setOpenEditModal] = useState(false)
+    const [studioId, setStudioId ] = useState()
 
     const [pageSize, setPageSize] = useState(10);
 
@@ -36,6 +33,12 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
     //     },
     // ];
 
+
+    const handleDeleteStudio = (studio)=>{
+        setDeleteOpenModal(true)
+        setStudioId(studio?.id)
+
+    }
 
 
     const columns = [
@@ -66,11 +69,11 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
             title: 'Action',
             key: 'action',
             align : 'center',
-            render: () => (
+            render: (studio) => (
                 <Space className=''>
                     { edit && <Link to={'/add-movies/edit-movies'}><MdModeEditOutline className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>}
                     <Link to={'/studio/paramount-studio'}><IoEyeSharp className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>
-                    <MdOutlineDelete size={25} onClick={() => setDeleteOpenModal(true)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
+                    <MdOutlineDelete size={25} onClick={() => handleDeleteStudio(studio)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
 
                 </Space>
             ),
@@ -95,7 +98,8 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
                 className="custom-table"
             />
 
-            <DeleteModal openAddModal={deleteOpenModal} setOpenAddModal={setDeleteOpenModal} />
+   
+    <DeleteModal studioId={studioId}  openAddModal={deleteOpenModal} setOpenAddModal={setDeleteOpenModal} />
         </div>
 
     )
