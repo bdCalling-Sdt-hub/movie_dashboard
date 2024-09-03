@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddNewStudioModal from '../AddNewStudioModal/AddNewStudioModal';
 import { MdModeEditOutline, MdOutlineDelete } from 'react-icons/md';
-const StudioPageTable = ({ edit }) => {
+const StudioPageTable = ({ edit ,formattedTable}) => {
     const [deleteOpenModal, setDeleteOpenModal] = useState(false)
     const [openEditModal, setOpenEditModal] = useState(false)
 
@@ -18,23 +18,23 @@ const StudioPageTable = ({ edit }) => {
       setPageSize(size);
     };
 
-    const data = [
-        {
-            key: '1',
-            serial: '1',
-            studio: { name: 'Hulu', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
-            totalMovie: 12,
-            movie: { name: 'The Godfather', poster: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
-        },
-        {
-            key: '2',
-            serial: '2',
-            studio: { name: 'max', logo: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
-            totalMovie: 15,
-            movie: { name: 'Inception', poster: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
+    // const data = [
+    //     {
+    //         key: '1',
+    //         serial: '1',
+    //         studio: { name: 'Hulu', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
+    //         totalMovie: 12,
+    //         movie: { name: 'The Godfather', poster: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
+    //     },
+    //     {
+    //         key: '2',
+    //         serial: '2',
+    //         studio: { name: 'max', logo: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
+    //         totalMovie: 15,
+    //         movie: { name: 'Inception', poster: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
            
-        },
-    ];
+    //     },
+    // ];
 
 
 
@@ -81,7 +81,7 @@ const StudioPageTable = ({ edit }) => {
         <div>
             <Table
                 columns={columns}
-                dataSource={data}
+                dataSource={formattedTable}
                 pagination={{
                     pageSizeOptions: 5,
                     showTotal: (total, range) => ` ${range[0]}-${range[1]} of ${total}`,
