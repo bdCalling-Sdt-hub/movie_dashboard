@@ -13,6 +13,7 @@ import TermsAndCondition from "../Pages/TermsAndCondition/TermsAndCondition";
 import ParamountStudio from "../Pages/ParamountStudio/ParamountStudio";
 import AddMovies from "../Pages/AddMovies/AddMovies";
 import EditMovieDetails from "../Pages/EditMovieDetails/EditMovieDetails";
+import { AddNewMoviePage } from "../Pages/AddNewMoviePage/AddNewMoviePage";
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
             {
                 path : '/terms-condition',
                 element : <TermsAndCondition />
+            },
+            {
+                path : '/add-new-movies',
+                element : <AddNewMoviePage/>
             },
         ]
     },

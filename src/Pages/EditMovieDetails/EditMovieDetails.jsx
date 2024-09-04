@@ -3,6 +3,7 @@ import Search from 'antd/es/input/Search';
 import React, { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { SearchOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 const EditMovieDetails = () => {
 
     const [selectCard, setSelectCard] = useState(null)
@@ -55,7 +56,7 @@ const EditMovieDetails = () => {
     return (
         <div className='m-5 bg-[#343944] rounded-md p-5'>
             <div className='flex gap-5 items-center font-semibold text-[24px] '>
-                <FaArrowLeft className='cursor-pointer' size={20} />
+                <Link to={-1}><FaArrowLeft className='cursor-pointer' size={20} /></Link>
                 <p className=''>Edit Movie Details</p>
             </div>
             <div className='flex items-center gap-1 mt-4 bg-[#1F1E20] w-[10%] py-2 justify-center rounded-sm'>

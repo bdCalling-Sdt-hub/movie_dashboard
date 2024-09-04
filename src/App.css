@@ -289,3 +289,19 @@
 :where(.css-dev-only-do-not-override-1c0na6j).ant-upload-wrapper .ant-upload-list .ant-upload-list-item-error .ant-upload-list-item-name, :where(.css-dev-only-do-not-override-1c0na6j).ant-upload-wrapper .ant-upload-list .ant-upload-list-item-error .ant-upload-icon .anticon {
   color: green;
 }
+
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-select-single {
+  font-size: 14px;
+  height: 45px;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #C2C2C2;
+  border: none;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-select .ant-select-arrow {
+  color: black;
+  font-size: 19px;
+}
