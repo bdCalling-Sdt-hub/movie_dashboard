@@ -26,9 +26,6 @@ const Studio = () => {
         }
 
     ))
-
-    // console.log(type)
-    /** studio table tab data */
     const items = [
 
         {

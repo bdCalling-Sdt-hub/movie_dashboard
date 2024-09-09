@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const MovieSelect = ({ movies, onSelectionChange }) => {
+const MovieSelect = ({ movies, onSelectionChange, selectMoviesFromDatabase, deleteIds, setDeleteIds }) => {
   const [selectedMovies, setSelectedMovies] = useState([]);
-
+  // console.log(deleteIds);
+  const [totalSelectMovie, setTotalSelectMovie] = useState([...selectedMovies])
+  console.log(totalSelectMovie);
+  useEffect(() => {
+    if (deleteIds) {
+      setTotalSelectMovie([...selectedMovies, ...deleteIds])
+    }
+  }, [deleteIds, selectedMovies])
   const handleCheckboxChange = (movie) => {
     setSelectedMovies((prevState) => {
-      const isSelected = prevState.some((m) => m.id === movie.id);
+      const isSelected = prevState?.some((m) => m.id === movie.id);
       const newSelection = isSelected
-        ? prevState.filter((m) => m.id !== movie.id)
+        ? prevState?.filter((m) => m?.id !== movie?.id)
         : [...prevState, movie];
 
       onSelectionChange(newSelection);
       return newSelection;
     });
   };
+  console.log(selectedMovies);
+
+  const handleChecked = (movie) => {
+
+    selectedMovies?.some((m) => m.movie_id === movie.movie_id)
+
+  }
 
   return (
     <div className=''>
@@ -22,7 +36,7 @@ const MovieSelect = ({ movies, onSelectionChange }) => {
           <div key={movie.id} className="flex items-center p-2 px-5  gap-2 rounded-lg">
             <input
               type="checkbox"
-              checked={selectedMovies.some((m) => m.id === movie.id)}
+              checked={handleChecked(movie)}
               onChange={() => handleCheckboxChange(movie)}
               className="mt-2"
             />

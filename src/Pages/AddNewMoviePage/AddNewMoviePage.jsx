@@ -1,5 +1,5 @@
 import { Input, Pagination, Select, Tabs } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,8 @@ export const AddNewMoviePage = () => {
     const [type, setType] = useState('movie')
     const [selectedMovie, setSelectedMovie] = useState([])
     const [studioId, setStudioId] = useState('')
+    const [deleteIds, setDeleteIds] = useState()
+
     const { data: studioList, isError, isLoading } = useGetStudioListQuery()
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -22,14 +24,18 @@ export const AddNewMoviePage = () => {
 
 
 
-    console.log(selectedNewMovie?.data);
-    console.log(allMovies?.data);
-    const removedSelectedMovie = allMovies?.data?.filter(movie => {
-        return !selectedNewMovie?.data?.some(selected => selected?.movie_id === movie?.movie_id);
-    })
-    console.log(removedSelectedMovie);
+
+    const selectMoviesFromDatabase = selectedNewMovie?.data?.map(movie =>(movie))
+
+   useEffect(()=>{
+    setDeleteIds(selectMoviesFromDatabase)
+   },[selectedNewMovie])
+//    console.log(selectMoviesFromDatabase);
+    // const removedSelectedMovie = allMovies?.data?.filter(movie => {
+    //     return !selectedNewMovie?.data?.some(selected => selected?.movie_id === movie?.movie_id);
+    // })
     // Formatted all movie table data
-    const formattedMovie = removedSelectedMovie?.map((movie, i) => ({
+    const formattedMovie = allMovies?.data?.map((movie, i) => ({
         id: i + 1,
         name: movie?.original_title,
         imageUrl: movie?.poster, ...movie
@@ -160,7 +166,7 @@ export const AddNewMoviePage = () => {
 
 
             <div className="p-4 ">
-                <MovieSelect movies={formattedMovie} onSelectionChange={handleSelectionChange} />
+                <MovieSelect selectMoviesFromDatabase={selectMoviesFromDatabase} setDeleteIds={setDeleteIds} deleteIds={deleteIds} movies={formattedMovie} onSelectionChange={handleSelectionChange} />
             </div>
 
             <div className='flex mt-5 items-center justify-center'>
