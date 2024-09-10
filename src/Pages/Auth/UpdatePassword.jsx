@@ -2,15 +2,29 @@
 import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import {Link, useNavigate} from "react-router-dom";
+import { useResetPasswordMutation } from "../../redux/api/usersApi";
+import { toast } from "sonner";
 
 const UpdatePassword = () => {
     const navigate = useNavigate();
+    const [resetPassword] = useResetPasswordMutation()
     const [newPassError, setNewPassError] = useState("");
     const [conPassError, setConPassError] = useState("");
-    const [curPassError, setCurPassError] = useState("");
-    const [err, setErr] = useState("");
     const onFinish =(values)=>{
-        console.log(values)
+        const data ={
+            "password": values?.password,
+            "confirm_password": values?.confirmPassword
+        }
+        resetPassword(data).unwrap()
+        .then((payload) =>{
+          toast.success("Password reset successfylly")
+          navigate('/auth/login')
+          localStorage.removeItem('email')
+        })
+        .catch((error) => {
+          toast.error(error?.data?.message)
+        })
+
     }
     
     return (
@@ -109,13 +123,9 @@ const UpdatePassword = () => {
                         }}
                     >
 
-                        <Link
-                            className="login-form-forgot "
-                            style={{ color: "#FFF" }}
-                            to="/"
-                        >
+                        
                             Update
-                        </Link>
+                        
                     </Button>
                 </Form.Item>
             </Form>

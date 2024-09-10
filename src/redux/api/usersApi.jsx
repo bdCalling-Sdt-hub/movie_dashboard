@@ -73,8 +73,30 @@ const userApi = baseApi.injectEndpoints({
                 }
             }
         }),
-        
+        verifyOtp: builder.mutation({
+            query: (data) => {
+                return {
+                    url: '/auth/verify-code',
+                    method: "POST",
+                    body: data,
+                   
+                }
+            }
+        }),
+        resetPassword : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/auth/reset-password',
+                    method : "POST",
+                    body : data,
+                    headers : {
+                        Authorization :  `Bearer ${localStorage.getItem("accessToken")}`
+                    }
+                }
+            }
+        })
+
     })
 })
 
-export const {useGetUserQuery , useUpdateUserProfileMutation, useChangePasswordMutation, useGetTermsQuery, usePostTermsMutation,useGetPrivacyQuery, usePostPrivacyMutation, useForgetAdminPasswordMutation} = userApi
+export const {useGetUserQuery , useUpdateUserProfileMutation, useChangePasswordMutation, useGetTermsQuery, usePostTermsMutation,useGetPrivacyQuery, usePostPrivacyMutation, useForgetAdminPasswordMutation, useVerifyOtpMutation, useResetPasswordMutation} = userApi

@@ -1,18 +1,47 @@
 import OtpInput from 'react-otp-input';
-import {Link, useNavigate} from "react-router-dom";
-import React, {useState} from "react";
-import {Button} from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Button } from "antd";
+import { useForgetAdminPasswordMutation, useVerifyOtpMutation } from '../../redux/api/usersApi';
+import { toast } from 'sonner';
 
 const Otp = () => {
+    const [adminForgetPassword] = useForgetAdminPasswordMutation()
+    const [verifyOtp] = useVerifyOtpMutation()
     const navigate = useNavigate();
     const [otp, setOtp] = useState("");
     const [err, setErr] = useState("");
     // const dispatch = useDispatch()
     const handleResendCode = () => {
-        
+
+        const email = {
+            "email": localStorage.getItem("email")
+        }
+        adminForgetPassword(email).unwrap()
+            .then((payload) => {
+                console.log(payload);
+                toast.success(payload?.message)
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error(error?.data?.message);
+            });
     }
     const handleVerifyOtp = () => {
-
+        const email = localStorage.getItem("email")
+        const verify = {
+            "code": otp,
+            "email": email
+        }
+        verifyOtp(verify).unwrap()
+            .then((payload) => {
+                if(payload?.accessToken){
+                    localStorage.setItem('accessToken' , payload?.accessToken)
+                }
+                toast.success(payload?.message)
+                navigate("/auth/update-password")
+            })
+            .catch((error) => toast.error(error?.data?.message));
     }
 
     return (
@@ -76,7 +105,7 @@ const Otp = () => {
                         Verify
                     </Link>
                 </Button>
-                <p  style={{ display: "flex", alignItems: "center", justifyContent: "center" ,gap:"5px" }}>
+                <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "5px" }}>
                     Didn’t receive code?
                     <p onClick={handleResendCode} style={{ color: "#CEB0E6", textDecoration: "underline", cursor: "pointer" }}>Resend </p>
                 </p>
