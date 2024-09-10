@@ -16,7 +16,6 @@ const Profile = () => {
     const [tab, setTab] = useState(new URLSearchParams(window.location.search).get('tab') || "Profile");
     const [passError, setPassError] = useState('')
 
-
     useEffect(() => {
         if (getUser?.data) {
             form.setFieldsValue({
@@ -48,9 +47,8 @@ const Profile = () => {
     };
     const onEditProfile = (values) => {
         const data = {
-            // profile_image: image,
             name: values.fullName,
-            contact: values.mobileNumber,
+            phone: values.mobileNumber,
             address: values.address
         }
         if(image){

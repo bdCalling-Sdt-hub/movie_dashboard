@@ -18,7 +18,8 @@ const userApi = baseApi.injectEndpoints({
                     method : 'PATCH',
                     body : data
                 }
-            }
+            },
+            invalidatesTags : ['user']
         }),
         changePassword : builder.mutation({
             query : (data)=>{
