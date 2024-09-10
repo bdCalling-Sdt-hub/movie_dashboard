@@ -20,6 +20,7 @@ const UpdatePassword = () => {
           toast.success("Password reset successfylly")
           navigate('/auth/login')
           localStorage.removeItem('email')
+          localStorage.removeItem('accessToken')
         })
         .catch((error) => {
           toast.error(error?.data?.message)

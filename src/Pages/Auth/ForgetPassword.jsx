@@ -16,6 +16,7 @@ const ForgetPassword = () => {
         adminForgetPassword(email).unwrap()
             .then((payload) => {
                 toast.success(payload?.message)
+                localStorage.removeItem('token')
                 navigate("/auth/otp")
             })
             .catch((error) =>{

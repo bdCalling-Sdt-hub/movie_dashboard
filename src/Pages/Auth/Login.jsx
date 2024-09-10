@@ -155,13 +155,8 @@ const Login = () => {
                                 marginTop: "56px",
                             }}
                         >
-                            <Link
-                                className="login-form-forgot  "
-                                style={{ color: "white" }}
-                                to=""
-                            >
+                            
                                 Sign In
-                            </Link>
                         </Button>
                     </Form.Item>
                 </Form>
