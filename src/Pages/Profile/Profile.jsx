@@ -101,7 +101,7 @@ const Profile = () => {
 
                     </div>
                     <div className='w-fit'>
-                        <p className=' text-[#575757] text-[24px] leading-[32px] font-semibold  '>{`Mr. Admin`}</p>
+                        <p className=' text-center text-[24px] leading-[32px] font-semibold  '>{getUser?.data?.name}</p>
                     </div>
                 </div>
 

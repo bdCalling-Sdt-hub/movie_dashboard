@@ -119,7 +119,7 @@ export const Sidebar = () => {
                         <NavLink
                           to={sub_item?.path}
                           key={subIndex}
-                          className={`flex justify-start items-center  ${isSubItemActive ? "bg-[#4E008C]  " : ""}  px-10  w-full py-2 cursor-pointer bg-[#141A26] text-white hover:text-white `}
+                          className={`flex justify-start items-center  ${isSubItemActive ? "bg-[#4E008C]  " : ""}  px-10  w-full py-1 cursor-pointer bg-[#141A26] text-white hover:text-white `}
                         >
                           {sub_item?.icon}
                           {sub_item?.label}
