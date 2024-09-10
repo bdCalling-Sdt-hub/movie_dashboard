@@ -1,19 +1,35 @@
 import { Button, Form, Input } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useForgetAdminPasswordMutation } from '../../redux/api/usersApi'
+import { toast } from 'sonner'
 
 const ForgetPassword = () => {
-
-
+    const navigate = useNavigate()
+    const [adminForgetPassword] = useForgetAdminPasswordMutation()
     // Handle form data for forget password
-    const onFinish = (values)=>{
-        console.log(values)
+    const onFinish = (values) => {
+
+        localStorage.setItem("email", values.email)
+        const email = {
+            "email": values.email
+        }
+        adminForgetPassword(email).unwrap()
+            .then((payload) => {
+                console.log(payload);
+                toast.success(payload?.message)
+                navigate("/auth/otp")
+            })
+            .catch((error) =>{
+                console.log(error);
+                toast.error(error?.data?.message);
+            });
     }
-  return (
-    <div className="flex justify-center items-center gap-0  bg-[#141A26]"
-             style={{
-                 width: "100%",
-                 height: "100vh",
-             }}
+    return (
+        <div className="flex justify-center items-center gap-0  bg-[#141A26]"
+            style={{
+                width: "100%",
+                height: "100vh",
+            }}
         >
             <div className="  flex justify-center items-center">
                 <Form
@@ -72,20 +88,15 @@ const ForgetPassword = () => {
                                 marginTop: "30px",
                             }}
                         >
-                            <Link
-                                className=""
-                                style={{ color: "#FFF" }}
-                                to="/auth/otp"
-                            >
+                           
                                 Send a Code
-                            </Link>
 
                         </Button>
                     </Form.Item>
                 </Form>
             </div>
         </div>
-  )
+    )
 }
 
 export default ForgetPassword

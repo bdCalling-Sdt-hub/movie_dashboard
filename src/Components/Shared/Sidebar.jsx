@@ -5,6 +5,7 @@ import setting from '../../assets/Images/setting.png'
 import movie from '../../assets/Images/movie.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
+import { RiLogoutBoxLine } from 'react-icons/ri'
 export const Sidebar = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -36,7 +37,7 @@ export const Sidebar = () => {
       icon: <img src={movie} />,
       sub_menu: false
     },
-   
+
     {
       path: '#',
       label: 'Setting',
@@ -83,7 +84,7 @@ export const Sidebar = () => {
 
 
   return (
-    <div id='sidebar' className='flex flex-col gap-5   mt-10'>
+    <div id='sidebar' className='flex flex-col gap-5  mt-10'>
       {
         links?.map((item, index) => {
           const isActive = item.path === pathname;
@@ -93,10 +94,10 @@ export const Sidebar = () => {
               <div key={index} >
                 {isSubMenuActive ? <div className='absolute left-0 mt-1  bg-[#4E008C]  h-[54px] w-2  ' style={{
                   borderRadius: "0 10px 10px 0",
-                }}> 
-                </div>: ""}
+                }}>
+                </div> : ""}
                 <div onClick={() => toggleAccordion(index)}
-                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white ${isSubMenuActive ? "bg-[#4E008C] "  : "bg-[#141A26]"} py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px] mb-5`}
+                  className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white ${isSubMenuActive ? "bg-[#4E008C] " : "bg-[#141A26]"} py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px] mb-5`}
                 >
                   {item?.icon}
                   {item?.label}
@@ -136,12 +137,12 @@ export const Sidebar = () => {
             return (
               <div key={index} >
                 {
-                  isActive ?  <div className='absolute left-0   bg-[#4E008C]  h-[54px] w-[6px]  ' style={{
+                  isActive ? <div className='absolute left-0   bg-[#4E008C]  h-[54px] w-[6px]  ' style={{
                     borderRadius: "0 10px 10px 0",
                   }}>
                   </div> : ""
                 }
-               
+
                 <NavLink
                   className={`cursor-pointer flex justify-start mx-10 gap-2 items-center text-white ${isActive ? "bg-[#4E008C]" : "bg-[#141A26]"}  py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px]`}
                   to={item?.path}
@@ -155,7 +156,13 @@ export const Sidebar = () => {
         })
       }
 
-
+      <NavLink
+        className={`cursor-pointer flex justify-start mx-10 gap-2 mt-40 items-center text-white bg-[#141A26]  py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px]`}
+        to={'/auth/login'}
+      >
+        <RiLogoutBoxLine />
+        Log Out
+      </NavLink>
     </div >
   )
 }

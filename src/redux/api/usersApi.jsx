@@ -64,7 +64,17 @@ const userApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        forgetAdminPassword :  builder.mutation({
+            query : (email)=>{
+                return {
+                    url : '/auth/send-verify-email',
+                    method : "POST",
+                    body : email
+                }
+            }
+        }),
+        
     })
 })
 
-export const {useGetUserQuery , useUpdateUserProfileMutation, useChangePasswordMutation, useGetTermsQuery, usePostTermsMutation,useGetPrivacyQuery, usePostPrivacyMutation} = userApi
+export const {useGetUserQuery , useUpdateUserProfileMutation, useChangePasswordMutation, useGetTermsQuery, usePostTermsMutation,useGetPrivacyQuery, usePostPrivacyMutation, useForgetAdminPasswordMutation} = userApi

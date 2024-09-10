@@ -9,7 +9,7 @@ const Otp = () => {
     const [err, setErr] = useState("");
     // const dispatch = useDispatch()
     const handleResendCode = () => {
-
+        
     }
     const handleVerifyOtp = () => {
 
