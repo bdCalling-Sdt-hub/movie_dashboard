@@ -241,6 +241,7 @@
 }
 :where(.css-dev-only-do-not-override-1c0na6j).ant-input-outlined {
   background-color: #343944 !important ;
+  color: white !important;
 }
 
 :where(.css-dev-only-do-not-override-1c0na6j).ant-input-affix-wrapper {
@@ -304,4 +305,9 @@
 :where(.css-dev-only-do-not-override-1c0na6j).ant-select .ant-select-arrow {
   color: black;
   font-size: 19px;
+}
+
+
+.ant-input::placeholder {
+  color: #919191; /* Change this to your desired color */
 }

@@ -1,13 +1,33 @@
-import React, {useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
 import { CiEdit } from "react-icons/ci";
+import { useGetUserQuery, useUpdateUserProfileMutation } from "../../redux/api/usersApi";
+import { imgURL } from "../../redux/api/baseApi";
+import { FaRegUser } from "react-icons/fa";
+import { toast } from "sonner";
 
 const admin = false;
 const Profile = () => {
+    const { data: getUser } = useGetUserQuery()
+    const [updateUserProfile] = useUpdateUserProfileMutation()
+    console.log(getUser?.data);
     const [image, setImage] = useState();
+    // console.log( URL.createObjectURL(image));
     const [form] = Form.useForm()
     const [tab, setTab] = useState(new URLSearchParams(window.location.search).get('tab') || "Profile");
     const [passError, setPassError] = useState('')
+
+
+    useEffect(() => {
+        if (getUser?.data) {
+            form.setFieldsValue({
+                fullName: getUser?.data?.name,
+                mobileNumber: getUser?.data?.phone,
+                address: getUser?.data?.address,
+                email: getUser?.data?.email
+            });
+        }
+    }, [getUser, form]);
     const handlePageChange = (tab) => {
         setTab(tab);
         const params = new URLSearchParams(window.location.search);
@@ -32,11 +52,23 @@ const Profile = () => {
     };
     const onEditProfile = (values) => {
         const data = {
-            profile_image: image,
+            // profile_image: image,
             name: values.fullName,
             contact: values.mobileNumber,
             address: values.address
         }
+        if(image){
+            data.img = image
+        }
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(data)) {
+            formData.append(key, value);
+        }
+       
+        updateUserProfile(formData).unwrap()
+            .then((payload) => toast.success(payload?.message))
+            .catch((error) => toast.error(error?.data?.message));
+
     }
 
     return (
@@ -47,9 +79,15 @@ const Profile = () => {
                 <div className='bg-base py-9 px-10 rounded flex items-center justify-center flex-col gap-6'>
                     <div className='relative w-[140px] h-[124px] mx-auto'>
                         <input type="file" onInput={handleChange} id='img' style={{ display: "none" }} />
+                        {/* <img
+                            style={{ width: 140, height: 140, borderRadius: "100%" }}
+                            src={URL.createObjectURL(image)}
+                            alt=""
+                        /> */}
+
                         <img
                             style={{ width: 140, height: 140, borderRadius: "100%" }}
-                            src={`https://dcassetcdn.com/design_img/2531172/542774/542774_13559578_2531172_d07764e6_image.png`}
+                            src={image ? URL.createObjectURL(image) : getUser?.data?.img ? `${imgURL}${getUser?.data?.img}` : <FaRegUser />}
                             alt=""
                         />
 
@@ -145,6 +183,7 @@ const Profile = () => {
                                             }}
                                             className='text-[16px] leading-5'
                                             placeholder={`xyz@gmail.com`}
+                                            readOnly
                                         />
                                     </Form.Item>
                                 </div>
@@ -186,7 +225,7 @@ const Profile = () => {
                                             className='text-[16px] leading-5'
                                             placeholder="79/A Joker Vila, Gotham City"
                                         />
-                                    </Form.Item> 
+                                    </Form.Item>
                                 </div>
 
                                 <Form.Item
@@ -206,7 +245,7 @@ const Profile = () => {
                                             height: 48,
                                             color: "#FCFCFC",
                                             background: '#6200AF'
-                                            
+
                                         }}
                                         className='font-normal text-[16px] leading-6 bg-primary rounded-full'
                                     >
