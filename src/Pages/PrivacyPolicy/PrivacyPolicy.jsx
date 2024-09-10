@@ -3,12 +3,23 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import JoditEditor from 'jodit-react';
 import { Link } from 'react-router-dom';
 import { IoArrowBackSharp } from 'react-icons/io5';
+import { useGetPrivacyQuery, usePostPrivacyMutation } from '../../redux/api/usersApi';
+import { toast } from 'sonner';
 const PrivacyPolicy = () => {
+    const { data: getPrivacy } = useGetPrivacyQuery()
+    const [postPrivacyPolicy] = usePostPrivacyMutation()
     const editor = useRef(null);
     const [content, setContent] = useState('');
     const [isLoading, seLoading] = useState(false)
     const handleTerms = () => {
         console.log(content)
+        const data = {
+            name: "Privacy",
+            value: content
+        }
+        postPrivacyPolicy(data).unwrap()
+            .then((payload) => toast.success(payload?.message))
+            .catch((error) => toast("Privacy Not update"));
     }
     const config = {
         readonly: false,
@@ -33,14 +44,14 @@ const PrivacyPolicy = () => {
             <div className="custom-jodit-editor mx-5 ">
                 <JoditEditor
                     ref={editor}
-                    value={content}
+                    value={getPrivacy?.data?.value}
                     config={config}
                     tabIndex={1}
                     onBlur={newContent => setContent(newContent)}
                     onChange={newContent => { }}
                 />
                 <div className='flex items-center   justify-center'>
-                    <button className='bg-[#6200AF] px-4 py-2 rounded-full'  >Save Changes</button>
+                    <button className='bg-[#6200AF] px-4 py-2 rounded-full' onClick={handleTerms}  >Save Changes</button>
                 </div>
 
             </div>

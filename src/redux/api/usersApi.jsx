@@ -28,8 +28,42 @@ const userApi = baseApi.injectEndpoints({
                     body : data
                 }
             }
-        })
+        }),
+        getTerms : builder.query({
+            query : ()=>{
+                return {
+                    url  :'/settings/get-settings/Terms',
+                    method : 'GET'
+                }
+            }
+        }),
+        postTerms : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/settings/update-settings',
+                    method : 'POST',
+                    body : data
+                }
+            }
+        }),
+        getPrivacy : builder.query({
+            query : ()=>{
+                return {
+                    url  :'/settings/get-settings/Privacy',
+                    method : 'GET'
+                }
+            }
+        }),
+        postPrivacy : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/settings/update-settings',
+                    method : 'POST',
+                    body : data
+                }
+            }
+        }),
     })
 })
 
-export const {useGetUserQuery , useUpdateUserProfileMutation, useChangePasswordMutation} = userApi
+export const {useGetUserQuery , useUpdateUserProfileMutation, useChangePasswordMutation, useGetTermsQuery, usePostTermsMutation,useGetPrivacyQuery, usePostPrivacyMutation} = userApi
