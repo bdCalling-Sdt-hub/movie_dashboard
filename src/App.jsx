@@ -23,11 +23,11 @@ function App() {
   ]
   return (
     <div className='m-5'>
-      <div className="flex justify-between items-center gap-8  ">
+      <div className="flex justify-between items-center gap-5">
 
         {
           data?.map((item, key) =>
-            <div key={key} className='bg-[#343944] p-10 w-full text-center rounded-md text-[32px] font-semibold'>
+            <div key={key} className='bg-[#343944] p-8 w-full text-center rounded-md text-[32px] font-semibold'>
               <h1>{item?.name}</h1>
               <h1>{item?.total}</h1>
             </div>

@@ -35,13 +35,13 @@ const RevinewChart = () => {
     ];
 
     return (
-        <div className='pt-5 bg-[#343944] p-2 rounded-md px-10'>
+        <div className='pt-5 bg-[#343944] p-2 rounded-md px-5'>
             <div className='flex items-center gap-5 py-5'>
                 <h1 className='font-bold text-xl '>Growth</h1>
                     <p className='flex items-center gap-2 '> <BiSolidSquareRounded className='text-[#4B92E5]' /> User Growth</p>
                     <p className='flex items-center gap-2 '>  <BiSolidSquareRounded className='text-[#CEB0E6]' /> Add Revenue</p>
             </div>
-            <div className='h-[500px] w-[100%]' >
+            <div className='h-[450px] w-[100%]' >
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
                         width={500}

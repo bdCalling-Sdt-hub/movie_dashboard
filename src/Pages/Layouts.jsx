@@ -28,7 +28,7 @@ const Layouts = () => {
         <Layout style={{ height: "100vh", width: "100vw" }} >
             <Header style={headerStyle}></Header>
             <Layout>
-                <Sider width="15%" style={siderStyle}>
+                <Sider width="16%" style={siderStyle}>
                     <Sidebar/>
                 </Sider>
                 <Content style={contentStyle}><Outlet/></Content>
