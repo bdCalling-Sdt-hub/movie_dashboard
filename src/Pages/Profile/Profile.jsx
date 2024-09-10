@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
 import { CiEdit } from "react-icons/ci";
-import { useGetUserQuery, useUpdateUserProfileMutation } from "../../redux/api/usersApi";
+import { useChangePasswordMutation, useGetUserQuery, useUpdateUserProfileMutation } from "../../redux/api/usersApi";
 import { imgURL } from "../../redux/api/baseApi";
 import { FaRegUser } from "react-icons/fa";
 import { toast } from "sonner";
@@ -10,9 +10,8 @@ const admin = false;
 const Profile = () => {
     const { data: getUser } = useGetUserQuery()
     const [updateUserProfile] = useUpdateUserProfileMutation()
-    console.log(getUser?.data);
+    const [changePassword] =  useChangePasswordMutation()
     const [image, setImage] = useState();
-    // console.log( URL.createObjectURL(image));
     const [form] = Form.useForm()
     const [tab, setTab] = useState(new URLSearchParams(window.location.search).get('tab') || "Profile");
     const [passError, setPassError] = useState('')
@@ -40,15 +39,12 @@ const Profile = () => {
         setImage(file)
 
     }
+
+    /** update password function */
     const onFinish = (values) => {
-        if (values?.new_password === values.current_password) {
-            return setPassError('your old password cannot be your new password')
-        }
-        if (values?.new_password !== values?.confirm_password) {
-            return setPassError("Confirm password doesn't match")
-        } else {
-            setPassError('')
-        }
+        changePassword(values).unwrap()
+        .then((payload) =>  toast.success(payload?.message))
+        .catch((error) => toast.error(error?.data?.message));
     };
     const onEditProfile = (values) => {
         const data = {
@@ -76,14 +72,10 @@ const Profile = () => {
 
             <div className='container pb-16'>
 
-                <div className='bg-base py-9 px-10 rounded flex items-center justify-center flex-col gap-6'>
+                <div className='bg-base py-5 px-10 rounded flex items-center justify-center flex-col gap-6'>
                     <div className='relative w-[140px] h-[124px] mx-auto'>
                         <input type="file" onInput={handleChange} id='img' style={{ display: "none" }} />
-                        {/* <img
-                            style={{ width: 140, height: 140, borderRadius: "100%" }}
-                            src={URL.createObjectURL(image)}
-                            alt=""
-                        /> */}
+                        
 
                         <img
                             style={{ width: 140, height: 140, borderRadius: "100%" }}
@@ -113,7 +105,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-center gap-6 my-6">
+                <div className="flex items-center justify-center gap-6 ">
                     <p
                         onClick={() => handlePageChange("Profile")}
                         className={`
@@ -266,7 +258,7 @@ const Profile = () => {
                                 form={form}
                             >
                                 <Form.Item
-                                    name="current_password"
+                                    name="old_Password"
                                     label={<p className="text-[#415D71] text-sm leading-5 poppins-semibold">Current
                                         Password</p>}
                                     rules={[
@@ -294,7 +286,7 @@ const Profile = () => {
 
 
                                 <Form.Item
-                                    name="new_password"
+                                    name="password"
                                     rules={[
                                         {
                                             required: true,
