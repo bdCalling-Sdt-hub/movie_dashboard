@@ -83,7 +83,7 @@ const Studio = () => {
                 <Tabs className='text-white' defaultActiveKey="1" items={items} onChange={onChange} />
             </div> */}
             <StudioPageTable edit={false} formattedTable={formattedTable} />
-
+                
 
             <AddNewStudioModal setOpenAddModal={setOpenAddModal} openAddModal={openAddModal} />
 

@@ -12,7 +12,7 @@ const headerStyle = {
     backgroundColor: '#07090D',
 };
 const contentStyle = {
-   
+
     color: '#fff',
     backgroundColor: '#141A26',
 };
@@ -25,15 +25,22 @@ const siderStyle = {
 
 const Layouts = () => {
     return (
-        <Layout style={{ height: "100vh", width: "100vw" }} >
-            <Header style={headerStyle}></Header>
-            <Layout>
-                <Sider width="16%" style={siderStyle}>
-                    <Sidebar/>
-                </Sider>
-                <Content style={contentStyle}><Outlet/></Content>
-            </Layout>
-        </Layout>
+        
+        <div className='flex justify-between items-center gap-0  '>
+
+            <div style={siderStyle} className='w-[330px] pt-10 bg-[#07090D]  h-screen overflow-y-scroll  '>
+                <Sidebar />
+            </div>
+
+            <div className=' w-full h-screen bg-[#141A26] overflow-y-scroll'>
+                <div className='bg-[#07090D] h-[70px]'>
+                    
+                </div>
+                <div className='p-5 text-white'>
+                    <Outlet />
+                </div>
+            </div>
+        </div>
     )
 }
 
