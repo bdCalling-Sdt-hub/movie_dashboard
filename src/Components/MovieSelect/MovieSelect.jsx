@@ -21,7 +21,7 @@ const MovieSelect = ({ movies, onSelectionChange, selectMoviesFromDatabase, dele
       return newSelection;
     });
   };
-  console.log(selectedMovies);
+  // console.log(selectedMovies);
 
   const handleChecked = (movie) => {
 

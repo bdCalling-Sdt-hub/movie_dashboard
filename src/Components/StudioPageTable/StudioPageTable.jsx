@@ -15,9 +15,6 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
       setPageSize(size);
     };
 
-   
-
-
     const handleDeleteStudio = (studio)=>{
         setDeleteOpenModal(true)
         setStudioId(studio?.id)
@@ -54,7 +51,7 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
             align : 'center',
             render: (studio) => (
                 <Space className=''>
-                    { edit && <Link to={'/add-movies/edit-movies'}><MdModeEditOutline className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>}
+                    { edit && <Link to={`/add-movies/edit-movies/${studio?.id}`}><MdModeEditOutline className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>}
                     <Link to={`/studio/paramount-studio/${studio?.id}`}><IoEyeSharp className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>
                     <MdOutlineDelete size={25} onClick={() => handleDeleteStudio(studio)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
 
