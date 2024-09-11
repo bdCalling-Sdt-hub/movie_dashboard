@@ -2,30 +2,26 @@ import { Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { IoEyeSharp } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IoMdAdd } from 'react-icons/io';
 import DeleteModal from '../../Components/DeleteModal/DeleteModal';
 import AddNewStudioModal from '../../Components/AddNewStudioModal/AddNewStudioModal';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useGetMovieByStudioIdQuery } from '../../redux/api/studioApi';
 const ParamountStudio = () => {
     const [openAddModal, setOpenAddModal] = useState(false)
+    const {id} = useParams()
 
-    const data = [
-        {
-            key: '1',
-            serial: '1',
-            releaseDate: '05-12-2024',
-            totalMovie: 12,
-            movie: { name: 'The Godfather', poster: 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg' },
-        },
-        {
-            key: '2',
-            serial: '2',
-            releaseDate: '05-12-2024',
-            totalMovie: 15,
-            movie: { name: 'Inception', poster: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg' },
-        },
-    ];
+    const {data: allMovies  } = useGetMovieByStudioIdQuery(id)
+
+    /** formatted table data for show movie  */
+    const formattedMovie = allMovies?.data?.map((movie,i)=>({
+        key : i + 1,
+        serial : i + 1,
+        releaseDate :  new Date(movie?.release_date).toISOString().split('T')[0],
+        movie : {name : movie?.title , poster : movie?.poster}
+
+    }))
 
 
 
@@ -77,7 +73,7 @@ const ParamountStudio = () => {
             </div>
             <Table
                 columns={columns}
-                dataSource={data}
+                dataSource={formattedMovie}
                 pagination={true}
                 rowClassName="custom-row"
                 className="custom-table"

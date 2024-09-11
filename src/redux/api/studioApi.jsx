@@ -28,7 +28,15 @@ const studioApi = baseApi.injectEndpoints({
                     // }
                 }
             }
+        }),
+        getMovieByStudioId : builder.query({
+            query : (id) =>{
+                return {
+                    url : `/movie/all-movies?studio_id=${id}`,
+                    method : "GET"
+                }
+            }
         })
     })
 })
-export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation } = studioApi;
+export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery } = studioApi;

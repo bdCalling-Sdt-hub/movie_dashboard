@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
                 element : <EditMovieDetails />
             },
             {
-                path : '/studio/paramount-studio',
+                path : '/studio/paramount-studio/:id',
                 element : <ParamountStudio />
             },
             {

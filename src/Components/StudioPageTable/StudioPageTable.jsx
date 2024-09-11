@@ -55,10 +55,11 @@ const StudioPageTable = ({ edit ,formattedTable}) => {
             render: (studio) => (
                 <Space className=''>
                     { edit && <Link to={'/add-movies/edit-movies'}><MdModeEditOutline className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>}
-                    <Link to={'/studio/paramount-studio'}><IoEyeSharp className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>
+                    <Link to={`/studio/paramount-studio/${studio?.id}`}><IoEyeSharp className='cursor-pointer' size={25} style={{ color: '#AEB9E1' }} /></Link>
                     <MdOutlineDelete size={25} onClick={() => handleDeleteStudio(studio)} className='cursor-pointer' style={{ color: '#AEB9E1' }} />
 
                 </Space>
+
             ),
         },
     ];
