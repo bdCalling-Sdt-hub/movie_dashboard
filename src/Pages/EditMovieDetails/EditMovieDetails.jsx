@@ -8,12 +8,13 @@ import { imgURL } from '../../redux/api/baseApi';
 import { toast } from 'sonner';
 
 const EditMovieDetails = () => {
+    const [searchValue, setSeachValue] = useState('')
     const { id } = useParams();
     const { data: getStudioById } = useGetStudioByIdQuery(id);
-    const { data: allMovies } = useGetMovieByStudioIdQuery(id);
+    const { data: allMovies } = useGetMovieByStudioIdQuery({id,searchValue});
     const [deleteMovies] = useDeleteMovieMutation()
     const [selectedMovies, setSelectedMovies] = useState([]);
-
+    console.log(searchValue);
     // Initialize selectedMovies with no movie (since initially all checkboxes will be checked)
     useEffect(() => {
         if (allMovies?.data) {
@@ -44,7 +45,12 @@ const EditMovieDetails = () => {
             .then((payload) => toast.success(payload?.message))
             .catch((error) => toast.error(error?.data?.message));
     }
+    
 
+    // Search vlaue function
+    const handleSearchValue = (e)=>{
+        setSeachValue(e.target.value)
+    }
     //   console.log("Unchecked Movies:", selectedMovies); // Will log the movies that are unchecked
 
     return (
@@ -60,7 +66,7 @@ const EditMovieDetails = () => {
 
             <div className='flex justify-between items-center mt-5'>
                 <h1>Select Movie</h1>
-                <Input suffix={<SearchOutlined className='text-white' />} placeholder='Search here' className='custom-input w-[30%] bg-[#343944] hover:bg-[#343944] rounded-full' />
+                <Input onChange={handleSearchValue} suffix={<SearchOutlined className='text-white' />} placeholder='Search here' className='custom-input w-[30%] bg-[#343944] hover:bg-[#343944] rounded-full' />
             </div>
 
             <div>

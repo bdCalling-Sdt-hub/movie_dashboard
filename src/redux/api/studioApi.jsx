@@ -30,9 +30,10 @@ const studioApi = baseApi.injectEndpoints({
             }
         }),
         getMovieByStudioId : builder.query({
-            query : (id) =>{
+            query : ({id,searchValue}) =>{
+                const nameQuery = searchValue ? `search=${searchValue}` : '';
                 return {
-                    url : `/movie/all-movies?studio_id=${id}`,
+                    url : `/movie/all-movies?studio_id=${id}&${nameQuery}`,
                     method : "GET"
                 }
             },
