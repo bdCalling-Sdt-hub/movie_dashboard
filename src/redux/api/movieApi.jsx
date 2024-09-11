@@ -27,11 +27,12 @@ const movieApi = baseApi.injectEndpoints({
                 method : "GET"
             }
            } 
-        })
+        }),
+       
         
 
 
     })
 })
 
-export const { useGetAllMoviesQuery, usePostMoviesMutation , useGetMoviesQuery } = movieApi
+export const { useGetAllMoviesQuery, usePostMoviesMutation , useGetMoviesQuery ,} = movieApi

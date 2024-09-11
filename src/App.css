@@ -311,3 +311,13 @@
 .ant-input::placeholder {
   color: #919191; /* Change this to your desired color */
 }
+
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-table-wrapper .ant-table-pagination.ant-pagination {
+  margin: 16px 93px;
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-prev .ant-pagination-item-link, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-next .ant-pagination-item-link:hover {
+  padding: 0px 5px;
+  background-color: #0A1330;
+}

@@ -35,8 +35,20 @@ const studioApi = baseApi.injectEndpoints({
                     url : `/movie/all-movies?studio_id=${id}`,
                     method : "GET"
                 }
-            }
-        })
+            },
+            providesTags : ['movies']
+        }),
+        deleteMovie : builder.mutation({
+            query : (data)=>{
+                return {
+                    url : '/movie/delete-movie',
+                    method : 'DELETE',
+                    body : data
+                }
+                
+            },
+            invalidatesTags : ['movies']
+        }) 
     })
 })
-export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery } = studioApi;
+export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery, useDeleteMovieMutation } = studioApi;
