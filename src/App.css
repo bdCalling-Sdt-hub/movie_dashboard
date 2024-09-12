@@ -321,3 +321,19 @@
   padding: 0px 5px;
   background-color: #0A1330;
 }
+
+/* :where(.css-dev-only-do-not-override-1c0na6j).ant-checkbox-disabled .ant-checkbox-inner:after {
+  border-color: white;
+} */
+:where(.css-dev-only-do-not-override-1c0na6j).ant-checkbox-disabled .ant-checkbox-inner {
+  background: #CB3CFF;
+  border-color: #CB3CFF;
+}
+/* :where(.css-dev-only-do-not-override-1c0na6j).ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #CB3CFF;
+  border-color: #CB3CFF;
+} */
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-select-single{
+  width: 200px !important;
+}

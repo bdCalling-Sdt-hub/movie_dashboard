@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 const ParamountStudio = () => {
     const [openAddModal, setOpenAddModal] = useState(false)
     const { id } = useParams()
-    const { data: allMovies } = useGetMovieByStudioIdQuery(id)
+    const { data: allMovies } = useGetMovieByStudioIdQuery({id})
     // delete movie api
     const [deleteMovie] = useDeleteMovieMutation()
 

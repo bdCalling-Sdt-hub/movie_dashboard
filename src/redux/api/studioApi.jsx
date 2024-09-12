@@ -18,7 +18,6 @@ const studioApi = baseApi.injectEndpoints({
         }),
         createNewStudio: builder.mutation({
             query: (data) => {
-                // console.log(data);
                 return {
                     url: '/studio/create-studio',
                     method: "POST",

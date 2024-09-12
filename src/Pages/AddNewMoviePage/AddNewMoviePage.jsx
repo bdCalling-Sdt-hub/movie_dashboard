@@ -1,40 +1,45 @@
-import { Input, Pagination, Select, Tabs } from 'antd'
+import { Checkbox, Input, Pagination, Select, Tabs } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
-import { FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft, FaCheck } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import MovieSelect from '../../Components/MovieSelect/MovieSelect'
-import { useGetStudioListQuery } from '../../redux/api/studioApi'
+import { useGetMovieByStudioIdQuery, useGetStudioListQuery } from '../../redux/api/studioApi'
 import { useGetAllMoviesQuery, useGetMoviesQuery, usePostMoviesMutation } from '../../redux/api/movieApi'
 import { imgURL } from '../../redux/api/baseApi'
+import { toast } from 'sonner'
 
 export const AddNewMoviePage = () => {
     const [type, setType] = useState('movie')
     const [selectedMovie, setSelectedMovie] = useState([])
     const [studioId, setStudioId] = useState('')
     const [deleteIds, setDeleteIds] = useState()
-
+    const [previousSelectedMovie , setPreviousSelectedMovie] = useState([])
     const { data: studioList, isError, isLoading } = useGetStudioListQuery()
+    const { data: studioBasedMovies } = useGetMovieByStudioIdQuery({ id: studioId });
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const { data: allMovies, error, loading } = useGetAllMoviesQuery({ type, currentPage, searchQuery, studioId })
-    const { data: selectedNewMovie, movieErron, movieLoading } = useGetMoviesQuery()
+    const { data: selectedNewMovie, movieError, movieLoading } = useGetMoviesQuery()
     const pageSize = 20
+
+
+
     const [postMovies] = usePostMoviesMutation();
 
 
+    useEffect(()=>{
+        const movieIds = studioBasedMovies?.data?.map((movie)=>(
+            movie?.movie_id
+        ))
+        setPreviousSelectedMovie(movieIds)
+    },[studioId])
+    
+    const selectMoviesFromDatabase = selectedNewMovie?.data?.map(movie => (movie))
 
-
-    const selectMoviesFromDatabase = selectedNewMovie?.data?.map(movie =>(movie))
-
-   useEffect(()=>{
-    setDeleteIds(selectMoviesFromDatabase)
-   },[selectedNewMovie])
-//    console.log(selectMoviesFromDatabase);
-    // const removedSelectedMovie = allMovies?.data?.filter(movie => {
-    //     return !selectedNewMovie?.data?.some(selected => selected?.movie_id === movie?.movie_id);
-    // })
-    // Formatted all movie table data
+    useEffect(() => {
+        setDeleteIds(selectMoviesFromDatabase)
+    }, [selectedNewMovie])
     const formattedMovie = allMovies?.data?.map((movie, i) => ({
         id: i + 1,
         name: movie?.original_title,
@@ -46,7 +51,6 @@ export const AddNewMoviePage = () => {
     const handleSelectionChange = (selectedMovies) => {
         setSelectedMovie(selectedMovies)
     };
-    // console.log(studioId);
 
 
     /** Change tab value  */
@@ -80,12 +84,6 @@ export const AddNewMoviePage = () => {
     }))
 
 
-    const handleAddMovie = (e) => {
-        console.log(`checked = ${e.target.checked}`);
-    };
-
-
-
     // handle select studio  value
     const handleChange = (value) => {
         setStudioId(value)
@@ -102,17 +100,32 @@ export const AddNewMoviePage = () => {
         setSearchQuery(query);
     }
 
+    const handleSelectMovie =(movie)=>{
+        const isMovieAlreadySelected = selectedMovie.some(selected => selected.movie_id === movie.movie_id);
+        if (isMovieAlreadySelected) {
+            setSelectedMovie(prev => prev.filter(selected => selected.movie_id !== movie.movie_id));
+        } else {
+            setSelectedMovie(prev => [...prev, movie]);
+        }
+    }
+
     // handle add movies function
     const handleAddMovies = () => {
+        if(!studioId){
+            return toast.error("Please Select Studio!!")
+        }
         const data = {
             studio_id: studioId,
             type: type,
             movies: selectedMovie,
+            delete_ids: [],
+            total_delete: 0,
             total_movies: selectedMovie.length
         }
+        console.log(data);
         postMovies(data).unwrap()
-            .then((payload) => console.log('fulfilled', payload))
-            .catch((error) => console.error('rejected', error))
+            .then((payload) =>toast.success( payload?.message))
+            .catch((error) => toast.error(error?.data?.message))
     }
     return (
         <div className='m-5 bg-[#343944] rounded-md p-5'>
@@ -136,6 +149,7 @@ export const AddNewMoviePage = () => {
                         onChange={handleChange}
                         popupMatchSelectWidth={false}
                         placement={'bottomRight'}
+                        placeholder={'Select a studio'}
                     >
                         {options?.map(option => (
                             <Option key={option.value} value={option.value}>
@@ -166,7 +180,24 @@ export const AddNewMoviePage = () => {
 
 
             <div className="p-4 ">
-                <MovieSelect selectMoviesFromDatabase={selectMoviesFromDatabase} setDeleteIds={setDeleteIds} deleteIds={deleteIds} movies={formattedMovie} onSelectionChange={handleSelectionChange} />
+                {/* <MovieSelect selectMoviesFromDatabase={selectMoviesFromDatabase} setDeleteIds={setDeleteIds} deleteIds={deleteIds} movies={formattedMovie} onSelectionChange={handleSelectionChange} /> */}
+                <div className="grid grid-cols-4 py-10">
+                    {allMovies?.data.map((movie, i) => (
+                        <div key={i} className='flex items-center gap-2 py-2 my-4 '>
+                            <Checkbox
+                                // checked ={previousSelectedMovie?.includes(movie?.movie_id)}
+                                disabled={previousSelectedMovie?.includes(movie?.movie_id)} 
+                                onChange={()=> handleSelectMovie(movie)}
+                                className="checkbox-style "
+                            />
+                            {/* <button className={`${previousSelectedMovie?.includes(movie?.movie_id) ? 'bg-[#CB3CFF] p-[3px] rounded-sm'  : ''}`}
+                            disabled={previousSelectedMovie?.includes(movie?.movie_id)}
+                            ><FaCheck size={10} /></button> */}
+                            <img src={movie.poster || 'https://m.media-amazon.com/images/I/51rOnIjLqzL._AC_.jpg'} alt={movie.title} className="show-image h-10 w-10 rounded-full" />
+                            <p className='text-[20px]'>{movie.title}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className='flex mt-5 items-center justify-center'>

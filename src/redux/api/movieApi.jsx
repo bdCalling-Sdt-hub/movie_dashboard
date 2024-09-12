@@ -12,7 +12,6 @@ const movieApi = baseApi.injectEndpoints({
         }),
         postMovies : builder.mutation({
             query : (data)=>{
-                console.log(data);
                 return {
                     url : '/movie/admin-add-movie',
                     method : 'POST',

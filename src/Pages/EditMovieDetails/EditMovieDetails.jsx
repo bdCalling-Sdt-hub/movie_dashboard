@@ -14,7 +14,6 @@ const EditMovieDetails = () => {
     const { data: allMovies } = useGetMovieByStudioIdQuery({id,searchValue});
     const [deleteMovies] = useDeleteMovieMutation()
     const [selectedMovies, setSelectedMovies] = useState([]);
-    console.log(searchValue);
     // Initialize selectedMovies with no movie (since initially all checkboxes will be checked)
     useEffect(() => {
         if (allMovies?.data) {
@@ -33,9 +32,7 @@ const EditMovieDetails = () => {
 
 
     const handleDeleteMovie = () => {
-        if(selectedMovies.length <=0){
-            return toast.error("P")
-        }
+        
         const data = {
             ids: selectedMovies,
             total_movies: selectedMovies.length,
@@ -52,7 +49,7 @@ const EditMovieDetails = () => {
         setSeachValue(e.target.value)
     }
     //   console.log("Unchecked Movies:", selectedMovies); // Will log the movies that are unchecked
-
+     console.log(selectedMovies);
     return (
         <div className='m-5 bg-[#343944] rounded-md p-5'>
             <div className='flex gap-5 items-center font-semibold text-[24px] '>

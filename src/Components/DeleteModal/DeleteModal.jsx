@@ -6,7 +6,6 @@ import { toast } from 'sonner'
 const DeleteModal = ({ openAddModal, setOpenAddModal, studioId }) => {
     const [deleteStudio] = useDeleteStudioMutation()
     const handleDeleteStudio = (value) => {
-        console.log(value);
         if (value == 'yes') {
             deleteStudio(studioId).unwrap()
                 .then((payload) =>{
