@@ -2,22 +2,26 @@
 import './App.css'
 import NewStudio from './Components/NewStudio/NewStudio'
 import RevinewChart from './Components/RevinewChart/RevinewChart'
+import { useGetDashboardOverviewQuery } from './redux/api/studioApi'
 
 function App() {
+
+  const {data :  overview} = useGetDashboardOverviewQuery();
+
   const data = [
     {
       name: "Total User",
-      total: "12,076",
+      total: overview?.data?.totalUser,
       bgColor: "#EBEBEB",
     },
     {
       name: "Total Studio",
-      total: "12,076",
+      total: overview?.data?.totalMovie,
       bgColor: "#EBEBEB",
     },
     {
       name: "Total Movie",
-      total: "12,076",
+      total: overview?.data?.totalStudio,
       bgColor: "#EBEBEB",
     },
   ]
@@ -37,7 +41,7 @@ function App() {
       </div>
       <div className='mt-5'>
         {/* <NewStudio/> */}
-        <RevinewChart/>
+        <RevinewChart overview={overview} />
       </div>
 
     </div>

@@ -159,6 +159,7 @@ export const Sidebar = () => {
       <NavLink
         className={`cursor-pointer flex justify-start mx-10 gap-2 mt-40 items-center text-white bg-[#141A26]  py-1 px-10  rounded-tr-2xl rounded-br-2xl hover:text-white  text-[16px]`}
         to={'/auth/login'}
+        onClick={()=> localStorage.removeItem('token')}
       >
         <RiLogoutBoxLine />
         Log Out

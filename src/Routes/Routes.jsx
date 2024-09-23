@@ -14,11 +14,12 @@ import ParamountStudio from "../Pages/ParamountStudio/ParamountStudio";
 import AddMovies from "../Pages/AddMovies/AddMovies";
 import EditMovieDetails from "../Pages/EditMovieDetails/EditMovieDetails";
 import { AddNewMoviePage } from "../Pages/AddNewMoviePage/AddNewMoviePage";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
     {
         path : '/',
-        element : <Layouts/>,
+        element :<PrivateRoutes> <Layouts/></PrivateRoutes>,
         children : [
             {
                 path : '/',

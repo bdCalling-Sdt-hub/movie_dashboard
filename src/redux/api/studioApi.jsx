@@ -56,7 +56,15 @@ const studioApi = baseApi.injectEndpoints({
                     method : "GET"
                 }
             }
+        }),
+        getDashboardOverview :  builder.query({
+            query : ()=>{
+                return {
+                    url : '/overview/overview',
+                    method : 'GET'
+                }
+            }
         })
     })
 })
-export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery, useDeleteMovieMutation, useGetStudioByIdQuery } = studioApi;
+export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery, useDeleteMovieMutation, useGetStudioByIdQuery , useGetDashboardOverviewQuery } = studioApi;

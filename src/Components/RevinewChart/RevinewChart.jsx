@@ -2,37 +2,14 @@ import React, { PureComponent } from 'react';
 import { BiSolidSquareRounded } from 'react-icons/bi';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-const RevinewChart = () => {
-    const data = [
-        {
-            uv: 4000,
-            pv: 2400,
-        },
-        {
-            uv: 3000,
-            pv: 1398,
-        },
-        {
-            uv: 2000,
-            pv: 9800,
-        },
-        {
-            uv: 2780,
-            pv: 3908,
-        },
-        {
-            uv: 1890,
-            pv: 4800,
-        },
-        {
-            uv: 2390,
-            pv: 3800,
-        },
-        {
-            uv: 3490,
-            pv: 4300,
-        },
-    ];
+const RevinewChart = ({overview}) => {
+  const data1 = overview?.data?.overview ?? {};
+  const formattedGrowth = Object?.entries(data1).map(([month, count]) => ({
+    name: month,
+    uv: count
+}));
+
+
 
     return (
         <div className='pt-5 bg-[#343944] p-2 rounded-md px-5'>
@@ -46,7 +23,7 @@ const RevinewChart = () => {
                     <AreaChart
                         width={500}
                         height={400}
-                        data={data}
+                        data={formattedGrowth}
                         margin={{
                             top: 10,
                             right: 30,
