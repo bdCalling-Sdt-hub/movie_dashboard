@@ -9,7 +9,7 @@ import { toast } from "sonner";
 const admin = false;
 const Profile = () => {
     const { data: getUser } = useGetUserQuery()
-    const [updateUserProfile] = useUpdateUserProfileMutation()
+    const [updateUserProfile , {isLoading}] = useUpdateUserProfileMutation()
     const [changePassword] =  useChangePasswordMutation()
     const [image, setImage] = useState();
     const [form] = Form.useForm()
@@ -79,27 +79,29 @@ const Profile = () => {
                             style={{ width: 140, height: 140, borderRadius: "100%" }}
                             src={image ? URL.createObjectURL(image) : getUser?.data?.img ? `${imgURL}${getUser?.data?.img}` : <FaRegUser />}
                             alt=""
+                            className="border-2 border-purple-600 p-[1px] object-cover"
                         />
 
                         {
                             tab === "Profile" && <label
                                 htmlFor="img"
                                 className='
-                            absolute top-1/2 -right-2
-                            bg-white
+                            absolute top-1/2 -right-3
+                            bg-purple-600
+                            
                             rounded-full
                             w-6 h-6
                             flex items-center justify-center
                             cursor-pointer
                         '
                             >
-                                <CiEdit color='#929394' />
+                                <CiEdit color='#ffff' />
                             </label>
                         }
 
                     </div>
                     <div className='w-fit'>
-                        <p className=' text-center text-[24px] leading-[32px] font-semibold  '>{getUser?.data?.name}</p>
+                        <p className=' text-center text-[24px] leading-[32px] font-semibold  uppercase'>{getUser?.data?.name}</p>
                     </div>
                 </div>
 
@@ -237,9 +239,10 @@ const Profile = () => {
                                             background: '#6200AF'
 
                                         }}
+                                        
                                         className='font-normal text-[16px] leading-6 bg-primary rounded-full'
                                     >
-                                        Save & Changes
+                                        Save Changes
                                     </Button>
                                 </Form.Item>
                             </Form>
