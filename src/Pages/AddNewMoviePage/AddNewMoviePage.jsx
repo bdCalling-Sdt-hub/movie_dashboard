@@ -24,7 +24,6 @@ export const AddNewMoviePage = () => {
     const pageSize = 20
 
 
-    console.log(allMovies?.data);
 
 
     const [postMovies] = usePostMoviesMutation();

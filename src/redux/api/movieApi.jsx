@@ -8,7 +8,8 @@ const movieApi = baseApi.injectEndpoints({
                     url: `/movie/admin-tmdb-movie-list?search=${searchQuery}&page=${currentPage}&type=${type}`,
                     method: "GET"
                 }
-            }
+            },
+            providesTags :['allMovies']
         }),
         getSingleStudioMovie : builder.query({
             query : (id)=>{
@@ -26,7 +27,8 @@ const movieApi = baseApi.injectEndpoints({
                     method : 'POST',
                     body : data
                 }
-            }
+            },
+            invalidatesTags:['allMovies']
         }),
         getMovies : builder.query({
            query : ()=>{
