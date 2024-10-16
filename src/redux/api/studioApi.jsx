@@ -47,7 +47,7 @@ const studioApi = baseApi.injectEndpoints({
                 }
                 
             },
-            invalidatesTags : ['movies']
+            invalidatesTags : ['movies','studioMovie']
         }) ,
         getStudioById  : builder.query({
             query : (id)=>{

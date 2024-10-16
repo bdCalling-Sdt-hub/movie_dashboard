@@ -3,5 +3,22 @@
 @tailwind utilities;
 
 *::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner {
+  background-color: #4E008C;
+  /* Change the background color */
+  border-color: #4E008C;
+  /* Change the border color */
+}
+
+/* Customize the disabled checkmark color */
+.ant-checkbox-disabled .ant-checkbox-checked .ant-checkbox-inner::after {
+  /* border-color: #8c8c8c; */
+  /* Change checkmark color */
+}
+/* Change the checkmark color to white for disabled and checked checkboxes */
+.ant-checkbox-disabled.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: white !important;   
+}

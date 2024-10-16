@@ -2,14 +2,22 @@ import { Form, Input, Modal} from 'antd'
 import TextArea from 'antd/es/input/TextArea';
 import {  useGetStudioListQuery } from '../../redux/api/studioApi';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdImage } from 'react-icons/io';
 import { toast } from 'sonner';
 const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
     const { data: studios, refetch } = useGetStudioListQuery();
     const [fileList, setFileList] = useState(null);
     const [fileName, setFileName] = useState("");
+    const [form] = Form.useForm();
 
+    useEffect(() => {
+        if (openAddModal) {
+            form.resetFields();
+            setFileList(null);
+            setFileName("");
+        }
+    }, [openAddModal, form]);
     // handle add new stadio
     const onFinish = async (values) => {
         const formData = new FormData();
@@ -30,7 +38,7 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                 }
                 refetch()
             })
-            .catch((err) => toast.error('Something went wrong!!'));
+            .catch((err) => toast.error(err?.response?.data?.message));
 
             setOpenAddModal(false);
         setFileName("");

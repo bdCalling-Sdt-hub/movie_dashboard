@@ -6,10 +6,12 @@ import AddNewStudioModal from '../../Components/AddNewStudioModal/AddNewStudioMo
 import { FaArrowLeft } from 'react-icons/fa';
 import { useDeleteMovieMutation, useGetMovieByStudioIdQuery } from '../../redux/api/studioApi';
 import { toast } from 'sonner';
+import { useGetSingleStudioMovieQuery } from '../../redux/api/movieApi';
 const ParamountStudio = () => {
     const [openAddModal, setOpenAddModal] = useState(false)
     const { id } = useParams()
-    const { data: allMovies } = useGetMovieByStudioIdQuery({id})
+    const { data: allMovies } = useGetSingleStudioMovieQuery(id)
+
     // delete movie api
     const [deleteMovie] = useDeleteMovieMutation()
 

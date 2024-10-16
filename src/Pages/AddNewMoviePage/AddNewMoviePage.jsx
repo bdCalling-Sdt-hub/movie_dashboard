@@ -14,7 +14,7 @@ export const AddNewMoviePage = () => {
     const [selectedMovie, setSelectedMovie] = useState([])
     const [studioId, setStudioId] = useState('')
     const [deleteIds, setDeleteIds] = useState()
-    const [previousSelectedMovie , setPreviousSelectedMovie] = useState([])
+    const [previousSelectedMovie, setPreviousSelectedMovie] = useState([])
     const { data: studioList, isError, isLoading } = useGetStudioListQuery()
     const { data: studioBasedMovies } = useGetMovieByStudioIdQuery({ id: studioId });
     const [searchQuery, setSearchQuery] = useState('');
@@ -24,17 +24,19 @@ export const AddNewMoviePage = () => {
     const pageSize = 20
 
 
+    console.log(allMovies?.data);
+
 
     const [postMovies] = usePostMoviesMutation();
 
 
-    useEffect(()=>{
-        const movieIds = studioBasedMovies?.data?.map((movie)=>(
+    useEffect(() => {
+        const movieIds = studioBasedMovies?.data?.map((movie) => (
             movie?.movie_id
         ))
         setPreviousSelectedMovie(movieIds)
-    },[studioId])
-    
+    }, [studioId])
+
     const selectMoviesFromDatabase = selectedNewMovie?.data?.map(movie => (movie))
 
     useEffect(() => {
@@ -58,7 +60,7 @@ export const AddNewMoviePage = () => {
         if (key == 1) {
             setType('movie')
         } if (key == 2) {
-            setType('tv ')
+            setType('tv')
         }
 
 
@@ -89,7 +91,7 @@ export const AddNewMoviePage = () => {
         setStudioId(value)
     };
 
-    // Implemenent pagination functionality
+    // Implement pagination functionality
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
@@ -100,23 +102,23 @@ export const AddNewMoviePage = () => {
         setSearchQuery(query);
     }
 
-    const handleSelectMovie =(movie)=>{
+    const handleSelectMovie = (movie) => {
         const isMovieAlreadySelected = selectedMovie.some(selected => selected.movie_id === movie.movie_id);
         if (isMovieAlreadySelected) {
             setSelectedMovie(prev => prev.filter(selected => selected.movie_id !== movie.movie_id));
         } else {
-            setSelectedMovie(prev => [...prev, movie]);
+            setSelectedMovie(prev => [...prev, { ...movie, type }]);
         }
     }
 
     // handle add movies function
     const handleAddMovies = () => {
-        if(!studioId){
+        if (!studioId) {
             return toast.error("Please Select Studio!!")
         }
         const data = {
             studio_id: studioId,
-            type: type,
+            // type: type,
             movies: selectedMovie,
             delete_ids: [],
             total_delete: 0,
@@ -124,7 +126,7 @@ export const AddNewMoviePage = () => {
         }
         console.log(data);
         postMovies(data).unwrap()
-            .then((payload) =>toast.success( payload?.message))
+            .then((payload) => toast.success(payload?.message))
             .catch((error) => toast.error(error?.data?.message))
     }
     return (
@@ -185,10 +187,11 @@ export const AddNewMoviePage = () => {
                     {allMovies?.data.map((movie, i) => (
                         <div key={i} className='flex items-center gap-2 py-2 my-4 '>
                             <Checkbox
-                                // checked ={previousSelectedMovie?.includes(movie?.movie_id)}
-                                disabled={previousSelectedMovie?.includes(movie?.movie_id)} 
-                                onChange={()=> handleSelectMovie(movie)}
-                                className="checkbox-style "
+                                checked={selectedMovie?.find(x => x?.movie_id === movie?.movie_id) || movie?.selected}
+                                disabled={movie?.selected}
+                                onChange={() => handleSelectMovie(movie)}
+                                className="checkbox-style disabled:color"
+                                style={{ '--ant-checkbox-check-color': 'white' }}
                             />
                             {/* <button className={`${previousSelectedMovie?.includes(movie?.movie_id) ? 'bg-[#CB3CFF] p-[3px] rounded-sm'  : ''}`}
                             disabled={previousSelectedMovie?.includes(movie?.movie_id)}

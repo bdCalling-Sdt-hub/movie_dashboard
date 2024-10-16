@@ -10,6 +10,15 @@ const movieApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        getSingleStudioMovie : builder.query({
+            query : (id)=>{
+                return {
+                    url : `/movie/admin-tmdb-movie-list?studio_id=${id}` ,
+                    method : 'GET'
+                }
+            },
+            providesTags : ['studioMovie']
+        }),
         postMovies : builder.mutation({
             query : (data)=>{
                 return {
@@ -34,4 +43,4 @@ const movieApi = baseApi.injectEndpoints({
     })
 })
 
-export const { useGetAllMoviesQuery, usePostMoviesMutation , useGetMoviesQuery ,} = movieApi
+export const { useGetAllMoviesQuery, usePostMoviesMutation , useGetMoviesQuery , useGetSingleStudioMovieQuery} = movieApi
