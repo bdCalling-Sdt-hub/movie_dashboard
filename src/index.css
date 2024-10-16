@@ -22,3 +22,16 @@
 .ant-checkbox-disabled.ant-checkbox-checked .ant-checkbox-inner::after {
   border-color: white !important;   
 }
+
+.anticon {
+  color: white;
+}
+.ant-pagination-prev{
+  background-color:  #0A1330;
+}
+:where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-disabled, :where(.css-dev-only-do-not-override-1c0na6j).ant-pagination .ant-pagination-disabled:hover {
+  background-color:  #0A1330;
+}
+.ant-tabs-ink-bar {
+  display: none !important;
+}

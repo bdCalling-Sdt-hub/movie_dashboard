@@ -206,12 +206,15 @@ export const AddNewMoviePage = () => {
             <div className='flex mt-5 items-center justify-center'>
                 <button className='bg-[#6200AF] px-8 py-2 text-xl rounded-3xl' onClick={() => handleAddMovies()}>Done</button>
             </div>
-            <Pagination
-                current={currentPage}
-                pageSize={pageSize}
-                total={allMovies?.total_pages}
-                showSizeChanger={false}
-                onChange={handlePageChange} />
+            <div className='flex justify-end pr-10'>
+                <Pagination
+                    current={currentPage}
+                    pageSize={pageSize}
+                    total={allMovies?.total_pages}
+                    showSizeChanger={false}
+                    showTotal={(total, range) => `${range[0]} - ${range[1]} of ${total}`}
+                    onChange={handlePageChange} />
+            </div>
         </div>
     )
 }
