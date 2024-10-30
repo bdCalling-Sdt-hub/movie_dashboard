@@ -1,15 +1,27 @@
-import { Form, Input, Modal} from 'antd'
+import { Form, Input, Modal, Select } from 'antd'
 import TextArea from 'antd/es/input/TextArea';
-import {  useGetStudioListQuery } from '../../redux/api/studioApi';
+import { useGetStudioListQuery } from '../../redux/api/studioApi';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { IoMdImage } from 'react-icons/io';
 import { toast } from 'sonner';
+
+const { Option } = Select;
 const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
     const { data: studios, refetch } = useGetStudioListQuery();
     const [fileList, setFileList] = useState(null);
     const [fileName, setFileName] = useState("");
     const [form] = Form.useForm();
+
+
+
+const options = [
+    { value: 'apple', label: 'Apple' },
+    { value: 'banana', label: 'Banana' },
+    { value: 'orange', label: 'Orange' },
+    { value: 'grape', label: 'Grape' },
+    { value: 'watermelon', label: 'Watermelon' },
+  ];
 
     useEffect(() => {
         if (openAddModal) {
@@ -32,15 +44,15 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         })
-            .then((res) =>{
-                if(res?.data?.success){
+            .then((res) => {
+                if (res?.data?.success) {
                     toast.success(res?.data?.message)
                 }
                 refetch()
             })
             .catch((err) => toast.error(err?.response?.data?.message));
 
-            setOpenAddModal(false);
+        setOpenAddModal(false);
         setFileName("");
     };
 
@@ -75,8 +87,22 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                                 label="Select Studio"
                                 rules={[{ required: true, message: 'Please select a studio!' }]}
                             >
-                                <Input placeholder="Enter Studio Name " className='py-2' variant="filled" />
-
+                                {/* <Input placeholder="Enter Studio Name " className='py-2' variant="filled" /> */}
+                                <Select
+                                    showSearch
+                                    style={{ width: 200 }}
+                                    placeholder="Select a fruit"
+                                    optionFilterProp="children"
+                                    filterOption={(input, option) =>
+                                        option?.children.toLowerCase().includes(input.toLowerCase())
+                                    }
+                                >
+                                    {options.map(opt => (
+                                        <Option key={opt.value} value={opt.value}>
+                                            {opt.label}
+                                        </Option>
+                                    ))}
+                                </Select>
                             </Form.Item>
                             <div className="flex flex-col items-center">
 
@@ -86,7 +112,7 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
                                         className="flex items-center justify-center w-full h-32 mb-2  bg-[#343944]  rounded-lg cursor-pointer  focus:outline-none focus:ring-2 "
                                     >
 
-                                        <IoMdImage  className='text-white' size={25} />
+                                        <IoMdImage className='text-white' size={25} />
 
                                         <span className="text-gray-500 ml-2">
                                             {fileName ? fileName : "Click to Upload"}
