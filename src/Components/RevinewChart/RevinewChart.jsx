@@ -16,7 +16,7 @@ const RevinewChart = ({overview}) => {
             <div className='flex items-center gap-5 py-5'>
                 <h1 className='font-bold text-xl '>Growth</h1>
                     <p className='flex items-center gap-2 '> <BiSolidSquareRounded className='text-[#4B92E5]' /> User Growth</p>
-                    <p className='flex items-center gap-2 '>  <BiSolidSquareRounded className='text-[#CEB0E6]' /> Add Revenue</p>
+                    {/* <p className='flex items-center gap-2 '>  <BiSolidSquareRounded className='text-[#CEB0E6]' /> Add Revenue</p> */}
             </div>
             <div className='h-[450px] w-[100%]' >
                 <ResponsiveContainer width="100%" height="100%">
@@ -35,7 +35,7 @@ const RevinewChart = ({overview}) => {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Area type="monotone" dataKey="pv" stackId="1" stroke="#4B92E5" fill="#4B92E5" />
+                        {/* <Area type="monotone" dataKey="pv" stackId="1" stroke="#4B92E5" fill="#4B92E5" /> */}
                         <Area type="monotone" dataKey="uv" stackId="1" stroke="#CEB0E6" fill="#CEB0E6" />
                         {/* <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" /> */}
                     </AreaChart>

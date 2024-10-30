@@ -55,7 +55,7 @@ export const Sidebar = () => {
         },
         {
           path: '/terms-condition',
-          label: 'Terms & Condition',
+          label: 'Term &Condition',
           icon: <></>,
         }
 
