@@ -6,6 +6,7 @@ import movie from '../../assets/Images/movie.png'
 import { useEffect, useRef, useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
 import { RiLogoutBoxLine } from 'react-icons/ri'
+import { HiOutlineUsers } from 'react-icons/hi'
 export const Sidebar = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -35,6 +36,12 @@ export const Sidebar = () => {
       path: '/add-movies',
       label: 'Add Movies',
       icon: <img src={movie} />,
+      sub_menu: false
+    },
+    {
+      path: '/all-users',
+      label: 'All User',
+      icon: <HiOutlineUsers size={20} />,
       sub_menu: false
     },
 

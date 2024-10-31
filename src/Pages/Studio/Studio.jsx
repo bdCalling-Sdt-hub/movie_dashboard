@@ -6,16 +6,14 @@ import DeleteModal from '../../Components/DeleteModal/DeleteModal'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Input, Tabs } from 'antd'
 import { Link } from 'react-router-dom'
-import { useGetStudioListByTypeQuery, useGetStudioListQuery } from '../../redux/api/studioApi'
+import { useGetStudioListQuery } from '../../redux/api/studioApi'
 import { imgURL } from '../../redux/api/baseApi'
 
 const Studio = () => {
     const { data: studioList, isError, isLoading } = useGetStudioListQuery()
-    const [type, setType] = useState('movie')
-    const {data :  getStudioByType} = useGetStudioListByTypeQuery(type)
     const [openAddModal, setOpenAddModal] = useState(false)
-    console.log(getStudioByType?.data);
-    console.log(type);
+    const [type, setType] = useState('movie')
+
 
     // Formatted studio table data
     const formattedTable = studioList?.data?.map((studio, i) => (
@@ -80,11 +78,11 @@ const Studio = () => {
 
 
 
-            
+            {/* 
             <div className='mt-5'>
                 <Tabs className='text-white' defaultActiveKey="1" items={items} onChange={onChange} />
-            </div>
-            {/* <StudioPageTable edit={false} formattedTable={formattedTable} /> */}
+            </div> */}
+            <StudioPageTable edit={false} formattedTable={formattedTable} />
                 
 
             <AddNewStudioModal setOpenAddModal={setOpenAddModal} openAddModal={openAddModal} />

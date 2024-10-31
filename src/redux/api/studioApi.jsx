@@ -71,7 +71,14 @@ const studioApi = baseApi.injectEndpoints({
                     url : `studio/get-studio-list/${type}`,method : 'GET'
                 }
             }
+        }),
+        getAllUser :  builder.query({
+            query  : ({page})=>{
+                return {
+                    url : `/auth/admin-get-all-user?page=${page}`,method : 'GET'
+                }
+            }
         })
     })
 })
-export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery, useDeleteMovieMutation, useGetStudioByIdQuery , useGetDashboardOverviewQuery , useGetStudioListByTypeQuery } = studioApi;
+export const { useGetStudioListQuery, useDeleteStudioMutation, useCreateNewStudioMutation, useGetMovieByStudioIdQuery, useDeleteMovieMutation, useGetStudioByIdQuery , useGetDashboardOverviewQuery , useGetStudioListByTypeQuery , useGetAllUserQuery } = studioApi;

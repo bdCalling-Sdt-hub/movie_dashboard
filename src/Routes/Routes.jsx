@@ -15,6 +15,7 @@ import AddMovies from "../Pages/AddMovies/AddMovies";
 import EditMovieDetails from "../Pages/EditMovieDetails/EditMovieDetails";
 import { AddNewMoviePage } from "../Pages/AddNewMoviePage/AddNewMoviePage";
 import PrivateRoutes from "./PrivateRoutes";
+import AllUsers from "../Pages/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
             {
                 path : '/new-studio',
                 element : <NewStudio />
+            },
+            {
+                path : '/all-users',
+                element : <AllUsers />
             },
             {
                 path : '/studio',
