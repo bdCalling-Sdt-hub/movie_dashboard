@@ -16,12 +16,12 @@ function App() {
     },
     {
       name: "Total Studio",
-      total: overview?.data?.totalMovie,
+      total: overview?.data?.totalStudio,
       bgColor: "#EBEBEB",
     },
     {
       name: "Total Movie",
-      total: overview?.data?.totalStudio,
+      total: overview?.data?.totalMovie,
       bgColor: "#EBEBEB",
     },
   ]

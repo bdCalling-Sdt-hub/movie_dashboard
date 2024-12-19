@@ -26,7 +26,7 @@ const AddNewStudioModal = ({ openAddModal, setOpenAddModal }) => {
         formData.append("description", values?.description);
 
 
-        axios.post('http://134.209.35.249:7000/studio/create-studio', formData, {
+        axios.post('http://174.138.74.126:7000/studio/create-studio', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
